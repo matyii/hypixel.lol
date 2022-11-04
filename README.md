@@ -6,7 +6,8 @@ This is a great base to start a small image host.
 - Download either the source code or a release.
 - Open a terminal and run `npm install` to install all dependencies.
 - Configure the config in `src/data/config.json`
-- Run `npm start` to start the node.
+- Add your keys in `src/data/keys.json`
+- Run `node .` or `npm start` to start the node.
 
 ### Setup
 To add domains you need to first open `src/data/domains.json` and add the domains to the list.  
