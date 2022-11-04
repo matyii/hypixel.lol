@@ -1,0 +1,28 @@
+<!DOCTYPE html> 
+<html lang="en">
+   <head>
+      <title>hypixel.lol — <%= file%></title>
+      <link type="application/json+oembed" href="<%= oEmbed%>">
+      <meta name="twitter:card" content="photo">
+      <meta name="twitter:image" content="<%= fileUrl %>">
+      <meta name="twitter:title" content="<%= embedTitle %>">
+      <meta name="twitter:description" content="<%= embedDescription %>">
+      <meta name="theme-color" content="<%= embedColour %>">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="assets/style.css">
+      <link rel="stylesheet" href="https://use.typekit.net/obf6rgz.css">
+   </head>
+   <body>
+      <div class="center">
+         <div class="card">
+            <div class="card-content">
+               <h2 class="card-title"><%= item%> (<%= fileSize%>)</h2>
+               <a href="<%= filePath%>" target="_blank">
+                <img src="<%= filePath%>" style="max-width: 100%; height: auto; border-radius: 10px;"></a>
+                <h2 class="card-content">Uploaded by: <span style="color: #9034ba;"><%= user%></span></h2>
+                <a style="margin-top: 20px;" href="<%= fileUrl%>" class="button button-block" download>Download</a> 
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

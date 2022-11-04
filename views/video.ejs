@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html lang="en">
+   <head>
+      <title>hypixel.lol — <%= file%></title>
+      <link type="application/json+oembed" href="<%= oEmbed%>">
+      <meta name="twitter:card" content="player">
+      <meta name="twitter:player" content="<%= fileUrl %>">
+      <meta name="twitter:player:width" content="1280">
+      <meta name="twitter:player:height" content="720">
+      <meta name="twitter:title" content="<%= embedTitle %>">
+      <meta name="twitter:description" content="<%= embedDescription %>">
+      <meta name="theme-color" content="<%= embedColour %>">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="assets/style.css">
+      <link rel="stylesheet" href="https://use.typekit.net/obf6rgz.css">
+   </head>
+   <body>
+      <div class="center">
+         <div class="card">
+            <div class="card-content">
+               <h2 class="card-title"><%= item%> (<%= fileSize%>)</h2>
+               <video style="max-width: 100%; height: auto; border-radius: 10px;" controls>
+                  <source src="<%= filePath%>">
+               </video>
+               <h2 class="card-content">Uploaded by: <%= user%></h2>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
