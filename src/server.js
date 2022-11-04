@@ -176,8 +176,8 @@ app.post("/upload", (req, res) => {
 })
 
 app.get("/api/domains", (request, response) => {
-    var domains = JSON.parse(fs.readFileSync(__dirname + "/data/domains.json"))
-    response.json(domains)
+    var domains = JSON.parse(fs.readFileSync(__dirname + "/data/domains.json")).join(' | ')
+    response.render('domains', {domains:domains})
 })
 
 app.get("/api/uploads/:uploadkey", (request, response) => {
