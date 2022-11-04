@@ -52,8 +52,6 @@ var allowedExtensions = ["png", "jpg", "jpeg", "gif", "webm", "mp4", "mov"]
 
 var config = JSON.parse(fs.readFileSync(__dirname + "/data/config.json"))
 var uploadKeyLength = config["uploadkeylength"]
-var uploadKeys = JSON.parse(fs.readFileSync(__dirname + "/data/keys.json"))
-//var uploadKeys = uploadKey["upload_key"]
 var mainDomain = config["maindomain"]
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -108,8 +106,9 @@ app.post("/upload", (req, res) => {
     var domains = JSON.parse(fs.readFileSync(__dirname + "/data/domains.json"))
     var form = new formidable.IncomingForm()
     form.parse(req, function (err, fields, files) {
+        var uploadKeys = JSON.parse(fs.readFileSync(__dirname + "/data/keys.json"))
         var uploadKey = fields["upload-key"]
-        //var user = uploadKey.substring(0, uploadKey.length - (uploadKeyLength + 1))
+        var user = uploadKey.substring(0, uploadKey.length - (uploadKeyLength + 1))
 
         var embedAuthor = fields["embed-author"]
         var embedTitle = fields["embed-title"]
@@ -117,7 +116,7 @@ app.post("/upload", (req, res) => {
         var embedColour = fields["embed-colour"]
         var randomColour = randomColor()
         var subdomain = fields["subdomain"]
-        var user = embedAuthor
+        //var user = embedAuthor
 
         if (embedColour.toLowerCase() == "random") {embedColour = randomColour}
         if (embedTitle == null || embedTitle == "") {embedTitle = " "}
