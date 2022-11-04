@@ -11,6 +11,9 @@ const app = express()
 app.set('view engine', 'ejs');
 const getSomeCoolEmojis = require("get-some-cool-emojis")
 
+// Console log when somebody uploaded
+upload_notify = true
+
 // folder checking
 var dir = './src/raw';
 var dir1 = './src/raw/i';
@@ -40,7 +43,7 @@ if (!fs.existsSync(dir2)){
 }
 
 else {
-    console.log('Image JSON folder already existing, skipping!')
+    console.log('[CHECK] Image JSON folder already existing, skipping!')
 }
 
 
@@ -106,7 +109,7 @@ app.post("/upload", (req, res) => {
     var form = new formidable.IncomingForm()
     form.parse(req, function (err, fields, files) {
         var uploadKey = fields["upload-key"]
-        var user = uploadKey.substring(0, uploadKey.length - (uploadKeyLength + 1))
+        //var user = uploadKey.substring(0, uploadKey.length - (uploadKeyLength + 1))
 
         var embedAuthor = fields["embed-author"]
         var embedTitle = fields["embed-title"]
@@ -114,6 +117,7 @@ app.post("/upload", (req, res) => {
         var embedColour = fields["embed-colour"]
         var randomColour = randomColor()
         var subdomain = fields["subdomain"]
+        var user = embedAuthor
 
         if (embedColour.toLowerCase() == "random") {embedColour = randomColour}
         if (embedTitle == null || embedTitle == "") {embedTitle = " "}
@@ -162,6 +166,9 @@ app.post("/upload", (req, res) => {
                             res.write(`http://${mainDomain}/${hash}`)
                         }
                     }
+                    if (upload_notify == true){
+                        console.log(`[INFO] New file has been uploaded by "${user}"! URL: ${mainDomain}/${hash}`)
+                    }
                     res.end()
                   })
             } else {
@@ -193,7 +200,7 @@ app.get("/api/uploads/:uploadkey", (request, response) => {
 })
 
 app.listen(config["nodeserverport"], () => {
-    console.log("listening on :"+config["nodeserverport"])
+    console.log(`[SUCCESS] Successfully started on port ${config['nodeserverport']}!`)
 })
 
 app.use(express.static(appDir + "/views/"))
