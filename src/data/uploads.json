@@ -88,5 +88,25 @@
             "description": " ",
             "colour": "#7300ff"
         }
+    },
+    "iiHy28Ru.png": {
+        "user": "",
+        "url": "http://localhost/iiHy28Ru",
+        "oembed": "http://localhost/raw/iiHy28Ru-embed.json",
+        "embed": {
+            "title": "lajos",
+            "description": " ",
+            "colour": "#7300ff"
+        }
+    },
+    "W6WL3bDR.png": {
+        "user": "",
+        "url": "http://localhost/W6WL3bDR",
+        "oembed": "http://localhost/raw/W6WL3bDR-embed.json",
+        "embed": {
+            "title": "lajos",
+            "description": " ",
+            "colour": "#7300ff"
+        }
     }
 }

@@ -11,13 +11,46 @@ const app = express()
 app.set('view engine', 'ejs');
 const getSomeCoolEmojis = require("get-some-cool-emojis")
 
+// folder checking
+var dir = './src/raw';
+var dir1 = './src/raw/i';
+var dir2 = './src/raw/json';
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir, { recursive: true });
+    console.log('[CHECK] Raw files folder not existing, creating one!')
+}
+
+else {
+    console.log('[CHECK] Raw files folder already existing, skipping!')
+}
+
+if (!fs.existsSync(dir1)){
+    fs.mkdirSync(dir1, { recursive: true });
+    console.log('[CHECK] Image folder not existing, creating one!')
+}
+
+else {
+    console.log('[CHECK] Image folder already existing, skipping!')
+}
+
+if (!fs.existsSync(dir2)){
+    fs.mkdirSync(dir2, { recursive: true });
+    console.log('[CHECK] Image JSON folder not existing, creating one!')
+}
+
+else {
+    console.log('Image JSON folder already existing, skipping!')
+}
+
+
 var appDir = path.dirname(require.main.filename).toString().replace("src", "")
 var allowedExtensions = ["png", "jpg", "jpeg", "gif", "webm", "mp4", "mov"]
 
 var config = JSON.parse(fs.readFileSync(__dirname + "/data/config.json"))
 var uploadKeyLength = config["uploadkeylength"]
-var uploadKey = JSON.parse(fs.readFileSync(__dirname + "/data/keys.json"))
-var uploadKeys = uploadKey["upload_key"]
+var uploadKeys = JSON.parse(fs.readFileSync(__dirname + "/data/keys.json"))
+//var uploadKeys = uploadKey["upload_key"]
 var mainDomain = config["maindomain"]
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -92,7 +125,6 @@ app.post("/upload", (req, res) => {
 
         var hash = randomstring.generate(8)
         var extension = path.extname(files.file.name).replace(".", "")
-        console.log(extension)
 
         if (uploadKeys.includes(uploadKey)) {
             if (allowedExtensions.includes(extension)) {
