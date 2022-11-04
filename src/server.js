@@ -64,6 +64,30 @@ app.get("/config", (req, res) => {
     res.render('config', {mainDomain:mainDomain})
 })
 
+app.post('/gen', (req,res) => {
+    var test2 = JSON.parse(fs.readFileSync(__dirname + "/data/keys.json"))
+        var code = req.body.name + "_" + randomstring.generate(12)
+        test2.push(code)
+        //res.send(test2)
+        fs.writeFileSync(__dirname + '/data/keys.json', JSON.stringify(test2), err => {
+            if (err) throw err
+        })
+        if (!req.body.name) {
+            res.redirect('/key')
+        }
+        else {
+            res.render('key', {code:code})
+        }
+})
+
+app.get('/gen', (req,res) => {
+    res.redirect('/key')
+})
+
+app.get('/key', (req,res) =>{
+    res.render('generate')
+})
+
 app.get("/:file", (req, res) => {
     var file = req.params["file"]
     
@@ -116,7 +140,6 @@ app.post("/upload", (req, res) => {
         var embedColour = fields["embed-colour"]
         var randomColour = randomColor()
         var subdomain = fields["subdomain"]
-        //var user = embedAuthor
 
         if (embedColour.toLowerCase() == "random") {embedColour = randomColour}
         if (embedTitle == null || embedTitle == "") {embedTitle = " "}
@@ -181,9 +204,14 @@ app.post("/upload", (req, res) => {
     })
 })
 
-app.get("/api/domains", (request, response) => {
+app.get("/domains", (request, response) => {
     var domains = JSON.parse(fs.readFileSync(__dirname + "/data/domains.json")).join(' | ')
     response.render('domains', {domains:domains})
+})
+
+app.get("/api/domains", (request, response) => {
+    var domains = JSON.parse(fs.readFileSync(__dirname + "/data/domains.json"))
+    response.json(domains)
 })
 
 app.get("/api/uploads/:uploadkey", (request, response) => {
