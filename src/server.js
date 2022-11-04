@@ -16,9 +16,9 @@ var allowedExtensions = ["png", "jpg", "jpeg", "gif", "webm", "mp4", "mov"]
 
 var config = JSON.parse(fs.readFileSync(__dirname + "/data/config.json"))
 var uploadKeyLength = config["uploadkeylength"]
-var uploadKeys = config["uploadkeys"]
+var uploadKey = JSON.parse(fs.readFileSync(__dirname + "/data/keys.json"))
+var uploadKeys = uploadKey["upload_key"]
 var mainDomain = config["maindomain"]
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -27,7 +27,7 @@ app.get("/", (req,res) => {
 })
 
 app.get("/config", (req, res) => {
-    res.render('config')
+    res.render('config', {mainDomain:mainDomain})
 })
 
 app.get("/:file", (req, res) => {

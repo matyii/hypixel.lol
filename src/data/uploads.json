@@ -78,5 +78,15 @@
             "description": " ",
             "colour": "#ff0000"
         }
+    },
+    "mbi9c0gb.png": {
+        "user": "",
+        "url": "http://localhost/mbi9c0gb",
+        "oembed": "http://localhost/raw/mbi9c0gb-embed.json",
+        "embed": {
+            "title": "lajos",
+            "description": " ",
+            "colour": "#7300ff"
+        }
     }
 }

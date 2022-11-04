@@ -1,6 +1,5 @@
 {
     "maindomain": "localhost",
     "uploadkeylength": 12,
-    "uploadkeys": ["123456789111"],
     "nodeserverport": 80
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>hypixel.lol</title>
+        <title>hypixel.lol - Config Generator</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
             
@@ -87,7 +87,7 @@
 
             function getDomains() {
               var domainSelect = document.getElementById("domain-select")
-              $.get("https://hypixel.lol/api/domains", (data, status) => {
+              $.get("/api/domains", (data, status) => {
                 data.forEach(item => {
                   var el = document.createElement("option")
                   el.value = item
@@ -127,7 +127,7 @@
                           "Name": "hypixel.lol",
                           "DestinationType": "ImageUploader, FileUploader",
                           "RequestMethod": "POST",
-                          "RequestURL": "https://hypixel.lol/upload",
+                          "RequestURL": "<%=mainDomain%>/upload",
                           "Body": "MultipartFormData",
                           "Arguments": {
                             "upload-key": uploadKey.value,
@@ -157,7 +157,7 @@
                 return;
               }
       
-              var filename = "sharex.wtf.sxcu";
+              var filename = "config.sxcu";
               var text = configJson;
               var element = document.createElement('a');
       
