@@ -107,9 +107,33 @@ app.get("/:file", (req, res) => {
             var embedColour = uploads[item]["embed"]["colour"]
 
             if (extension == "webm" || extension == "mp4" || extension == "mov") {
-                res.render('video', {item:item,file:file,fileSize:fileSize, oEmbed:oEmbed, fileUrl:fileUrl, embedTitle:embedTitle, embedDescription:embedDescription, embedColour:embedColour, filePath:filePath, user:user})
+                res.render('video', 
+                {
+                item:item,
+                file:file,
+                fileSize:fileSize,
+                oEmbed:oEmbed,
+                fileUrl:fileUrl,
+                embedTitle:embedTitle,
+                embedDescription:embedDescription,
+                embedColour:embedColour,
+                filePath:filePath,
+                user:user
+                })
             } else {
-                res.render('photo', {item:item,file:file,fileSize:fileSize, oEmbed:oEmbed, fileUrl:fileUrl, embedTitle:embedTitle, embedDescription:embedDescription, embedColour:embedColour, filePath:filePath, user:user})                        
+                res.render('photo',
+                {
+                    item:item,
+                    file:file,
+                    fileSize:fileSize,
+                    oEmbed:oEmbed,
+                    fileUrl:fileUrl,
+                    embedTitle:embedTitle,
+                    embedDescription:embedDescription,
+                    embedColour:embedColour, 
+                    filePath:filePath,
+                    user:user
+                })                        
             }
         }
     })
