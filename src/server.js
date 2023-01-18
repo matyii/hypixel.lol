@@ -8,19 +8,17 @@ const filesizejs = require('filesize')
 const fs = require('fs')
 const path = require('path')
 const app = express()
-app.set('view engine', 'ejs');
 const getSomeCoolEmojis = require("get-some-cool-emojis")
+app.set('view engine', 'ejs');
 
 // Console log when somebody uploaded
 upload_notify = true
 
-// folder checking
-var dir = './src/raw';
-var dir1 = './src/raw/i';
-var dir2 = './src/raw/json';
+// Folder checking
+var folders = ['./src/raw','./src/raw/i','./src/raw/json']
 
-if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir, { recursive: true });
+if (!fs.existsSync(folders[0])){
+    fs.mkdirSync(folders[0], { recursive: true });
     console.log('[CHECK] Raw files folder not existing, creating one!')
 }
 
@@ -28,8 +26,8 @@ else {
     console.log('[CHECK] Raw files folder already existing, skipping!')
 }
 
-if (!fs.existsSync(dir1)){
-    fs.mkdirSync(dir1, { recursive: true });
+if (!fs.existsSync(folders[1])){
+    fs.mkdirSync(folders[1], { recursive: true });
     console.log('[CHECK] Image folder not existing, creating one!')
 }
 
@@ -37,8 +35,8 @@ else {
     console.log('[CHECK] Image folder already existing, skipping!')
 }
 
-if (!fs.existsSync(dir2)){
-    fs.mkdirSync(dir2, { recursive: true });
+if (!fs.existsSync(folders[2])){
+    fs.mkdirSync(folders[2], { recursive: true });
     console.log('[CHECK] Image JSON folder not existing, creating one!')
 }
 
