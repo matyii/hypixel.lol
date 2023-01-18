@@ -95,10 +95,8 @@ app.get("/:file", (req, res) => {
             var fileUrl = "http://"+mainDomain+"/raw/i/" + item
             var fileSize = filesizejs(fs.statSync(__dirname + "/" + filePath).size, {base: 10})
             var extension = item.split(".")[1]
-
             var uploads = JSON.parse(fs.readFileSync(__dirname + "/data/uploads.json"))
             var user = uploads[item]["user"]
-
             var oEmbed = uploads[item]["oembed"]
             var embedTitle = uploads[item]["embed"]["title"].replace("{filename}", file).replace("{filesize}", fileSize).replace("{username}", user)
             var embedDescription = uploads[item]["embed"]["description"].replace("{filename}", file).replace("{filesize}", fileSize).replace("{username}", user)
@@ -107,16 +105,16 @@ app.get("/:file", (req, res) => {
             if (extension == "webm" || extension == "mp4" || extension == "mov") {
                 res.render('video', 
                 {
-                item:item,
-                file:file,
-                fileSize:fileSize,
-                oEmbed:oEmbed,
-                fileUrl:fileUrl,
-                embedTitle:embedTitle,
-                embedDescription:embedDescription,
-                embedColour:embedColour,
-                filePath:filePath,
-                user:user
+                    item:item,
+                    file:file,
+                    fileSize:fileSize,
+                    oEmbed:oEmbed,
+                    fileUrl:fileUrl,
+                    embedTitle:embedTitle,
+                    embedDescription:embedDescription,
+                    embedColour:embedColour,
+                    filePath:filePath,
+                    user:user
                 })
             } else {
                 res.render('photo',
@@ -155,7 +153,6 @@ app.post("/upload", (req, res) => {
         var uploadKeys = JSON.parse(fs.readFileSync(__dirname + "/data/keys.json"))
         var uploadKey = fields["upload-key"]
         var user = uploadKey.substring(0, uploadKey.length - (uploadKeyLength + 1))
-
         var embedAuthor = fields["embed-author"]
         var embedTitle = fields["embed-title"]
         var embedDescription = fields["embed-description"]
@@ -226,6 +223,10 @@ app.post("/upload", (req, res) => {
     })
 })
 
+app.get("/api", (request, response) => {
+    response.render('api')
+})
+
 app.get("/domains", (request, response) => {
     var domains = JSON.parse(fs.readFileSync(__dirname + "/data/domains.json")).join(' | ')
     response.render('domains', {domains:domains})
@@ -235,6 +236,7 @@ app.get("/api/domains", (request, response) => {
     var domains = JSON.parse(fs.readFileSync(__dirname + "/data/domains.json"))
     response.json(domains)
 })
+
 
 app.get("/api/uploads/:uploadkey", (request, response) => {
     var user = request.params["uploadkey"].substring(0, request.params["uploadkey"].length - (uploadKeyLength + 1))
