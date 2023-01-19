@@ -76,7 +76,6 @@ body {
     border-radius: 10px!important;
     background: rgb(117,154,255)!important;
     background: linear-gradient(152deg, rgba(117,154,255,1) 8%, rgba(211,117,255,1) 75%)!important;
-
     transition: opacity .25s!important;
 }
 

@@ -1,10 +1,11 @@
+![Banner](hypixel.png)
 # hypixel.lol
 A node.js sharex file uploader with multiple domains, upload keys, embeds and a pretty config generator.  
 This is a great base to start a small image host.  
 
 ### Installation
-- Download either the source code or a release.
-- Open a terminal and run `npm install` to install all dependencies.
+- Download / Clone the source code.
+- Open a terminal and run `npm install` or `npm i` to install all dependencies.
 - Configure the config in `src/data/config.json`
 - Add your keys in `src/data/keys.json`
 - Run `node .` or `npm start` to start the node.

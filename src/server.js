@@ -224,7 +224,7 @@ app.post("/upload", (req, res) => {
 })
 
 app.get("/api", (request, response) => {
-    response.render('api')
+    response.send('test')
 })
 
 app.get("/domains", (request, response) => {
