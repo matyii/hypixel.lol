@@ -11,9 +11,6 @@ const app = express()
 const getSomeCoolEmojis = require("get-some-cool-emojis")
 app.set('view engine', 'ejs');
 
-// Console log when somebody uploaded
-upload_notify = true
-
 // Folder checking
 var folders = ['./src/raw','./src/raw/i','./src/raw/json']
 
@@ -51,6 +48,7 @@ var allowedExtensions = ["png", "jpg", "jpeg", "gif", "webm", "mp4", "mov"]
 var config = JSON.parse(fs.readFileSync(__dirname + "/data/config.json"))
 var uploadKeyLength = config["uploadkeylength"]
 var mainDomain = config["maindomain"]
+var upload_notify = config["upload_notify"]
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 

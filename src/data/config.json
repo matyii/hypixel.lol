@@ -1,5 +1,6 @@
 {
     "maindomain": "localhost",
     "uploadkeylength": 12,
-    "nodeserverport": 80
+    "nodeserverport": 80,
+    "upload_notify": true
 }
