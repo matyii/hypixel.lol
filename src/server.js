@@ -34,17 +34,13 @@ app.use(bodyParser.json())
 
 async function sendEmbed(webhookURL, jsonPath, username, filename, url, upload_key) {
     const jsonData = JSON.parse(await readFile(jsonPath));
-    const title = jsonData.title
-    const description = jsonData.description
-    const color = jsonData.color
-    const thumb_url = jsonData.thumb_url
     const body = JSON.stringify({
         embeds: [{
-            title: title,
-            description: description,
-            color: color,
+            title: jsonData.title,
+            description: jsonData.description,
+            color: jsonData.color,
             thumbnail: {
-                url: thumb_url,
+                url: jsonData.thumb_url,
             },
             fields: [
                 {
@@ -67,7 +63,11 @@ async function sendEmbed(webhookURL, jsonPath, username, filename, url, upload_k
                     value: `[${upload_key}](http://${mainDomain}/api/uploads/${upload_key})`,
                     inline: false
                 },
-            ]
+            ],
+            author: {
+                name: "hypixel.lol | Uploads",
+                icon_url: "https://raw.githubusercontent.com/matyii/hypixel.lol/main/icons/upload.png"
+            }
         }] 
     });
     const options = {
