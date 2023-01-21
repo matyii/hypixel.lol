@@ -13,35 +13,9 @@ const getSomeCoolEmojis = require("get-some-cool-emojis")
 const { json } = require('body-parser')
 app.set('view engine', 'ejs');
 
-// Folder checking
 var folders = ['./src/raw','./src/raw/i','./src/raw/json']
-
-if (!fs.existsSync(folders[0])){
-    fs.mkdirSync(folders[0], { recursive: true });
-    console.log('[CHECK] Raw files folder not existing, creating one!')
-}
-
-else {
-    console.log('[CHECK] Raw files folder already existing, skipping!')
-}
-
-if (!fs.existsSync(folders[1])){
-    fs.mkdirSync(folders[1], { recursive: true });
-    console.log('[CHECK] Image folder not existing, creating one!')
-}
-
-else {
-    console.log('[CHECK] Image folder already existing, skipping!')
-}
-
-if (!fs.existsSync(folders[2])){
-    fs.mkdirSync(folders[2], { recursive: true });
-    console.log('[CHECK] Image JSON folder not existing, creating one!')
-}
-
-else {
-    console.log('[CHECK] Image JSON folder already existing, skipping!')
-}
+const checkFolder = require('./check.js');
+checkFolder(folders)
 
 var appDir = path.dirname(require.main.filename).toString().replace("src", "")
 var allowedExtensions = ["png", "jpg", "jpeg", "gif", "webm", "mp4", "mov"]
