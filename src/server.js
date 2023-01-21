@@ -58,7 +58,7 @@ var webhook_config = __dirname + "/data/webhook.json"
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-async function sendEmbed(webhookURL, jsonPath, username, filename, url) {
+async function sendEmbed(webhookURL, jsonPath, username, filename, url, upload_key) {
     const jsonData = JSON.parse(await readFile(jsonPath));
     const title = jsonData.title
     const description = jsonData.description
@@ -79,15 +79,20 @@ async function sendEmbed(webhookURL, jsonPath, username, filename, url) {
                     inline: true
                 },
                 {
-                    name: "Filename",
+                    name: "Filename (Hash)",
                     value: filename,
                     inline: true
                 },
                 {
                     name: "URL",
-                    value: `[CLICK](http://${url})`,
+                    value: `[Click](http://${url})`,
                     inline: false
-                }
+                },
+                {
+                    name: "User's upload key",
+                    value: `[${upload_key}](http://${mainDomain}/api/uploads/${upload_key})`,
+                    inline: false
+                },
             ]
         }] 
     });
@@ -223,7 +228,7 @@ app.post("/upload", (req, res) => {
         var hash = randomstring.generate(8)
         var extension = path.extname(files.file.name).replace(".", "")
         var url = `${mainDomain}/${hash}`
-        
+
         if (uploadKeys.includes(uploadKey)) {
             if (allowedExtensions.includes(extension)) {
                 fs.rename(files.file.path, __dirname + '/raw/i/' + hash + "." + extension, function (err) {
@@ -266,7 +271,7 @@ app.post("/upload", (req, res) => {
                     }
 
                     if (webhook_notify == true){
-                        sendEmbed(webhookURL, webhook_config, user, hash, url);
+                        sendEmbed(webhookURL, webhook_config, user, `${hash}.${extension}`, url, uploadKey);
                     }
                     res.end()
                   })
