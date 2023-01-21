@@ -2,5 +2,7 @@
     "maindomain": "localhost",
     "uploadkeylength": 12,
     "nodeserverport": 80,
-    "upload_notify": true
+    "upload_notify": true,
+    "webhook_notify": true,
+    "webhook_url": "https://discord.com/api/webhooks/1065746908292862012/lc6HwRBHQc5cbWs2SGoFVfX4hiJRpQjpoC-M_eOBzBmerNaHmxrVbSWWD4yiIV_ztW4e"
 }

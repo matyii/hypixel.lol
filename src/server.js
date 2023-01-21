@@ -6,9 +6,11 @@ const randomColor = require('randomcolor')
 const formidable = require('formidable')
 const filesizejs = require('filesize')
 const fs = require('fs')
+const { readFile } = require('fs/promises')
 const path = require('path')
 const app = express()
 const getSomeCoolEmojis = require("get-some-cool-emojis")
+const { json } = require('body-parser')
 app.set('view engine', 'ejs');
 
 // Folder checking
@@ -41,16 +43,68 @@ else {
     console.log('[CHECK] Image JSON folder already existing, skipping!')
 }
 
-
 var appDir = path.dirname(require.main.filename).toString().replace("src", "")
 var allowedExtensions = ["png", "jpg", "jpeg", "gif", "webm", "mp4", "mov"]
 
 var config = JSON.parse(fs.readFileSync(__dirname + "/data/config.json"))
 var uploadKeyLength = config["uploadkeylength"]
 var mainDomain = config["maindomain"]
+
 var upload_notify = config["upload_notify"]
+var webhook_notify = config["webhook_notify"]
+var webhookURL = config["webhook_url"]
+var webhook_config = __dirname + "/data/webhook.json"
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+async function sendEmbed(webhookURL, jsonPath, username, filename, url) {
+    const jsonData = JSON.parse(await readFile(jsonPath));
+    const title = jsonData.title
+    const description = jsonData.description
+    const color = jsonData.color
+    const thumb_url = jsonData.thumb_url
+    const body = JSON.stringify({
+        embeds: [{
+            title: title,
+            description: description,
+            color: color,
+            thumbnail: {
+                url: thumb_url,
+            },
+            fields: [
+                {
+                    name: "User",
+                    value: username,
+                    inline: true
+                },
+                {
+                    name: "Filename",
+                    value: filename,
+                    inline: true
+                },
+                {
+                    name: "URL",
+                    value: `[CLICK](http://${url})`,
+                    inline: false
+                }
+            ]
+        }] 
+    });
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: body
+    };
+    try {
+        const response = await fetch(webhookURL, options);
+        if (!response.ok) {
+            console.log(await response.json())
+        }
+    } catch(error) {
+        console.log(error);
+    }
+}
 
 app.get("/", (req,res) => {
     res.render('index')
@@ -168,7 +222,8 @@ app.post("/upload", (req, res) => {
 
         var hash = randomstring.generate(8)
         var extension = path.extname(files.file.name).replace(".", "")
-
+        var url = `${mainDomain}/${hash}`
+        
         if (uploadKeys.includes(uploadKey)) {
             if (allowedExtensions.includes(extension)) {
                 fs.rename(files.file.path, __dirname + '/raw/i/' + hash + "." + extension, function (err) {
@@ -205,8 +260,13 @@ app.post("/upload", (req, res) => {
                             res.write(`http://${mainDomain}/${hash}`)
                         }
                     }
+
                     if (upload_notify == true){
-                        console.log(`[INFO] New file has been uploaded by "${user}"! URL: ${mainDomain}/${hash}`)
+                        console.log(`[INFO] New file has been uploaded by "${user}"! URL: ${url}`)
+                    }
+
+                    if (webhook_notify == true){
+                        sendEmbed(webhookURL, webhook_config, user, hash, url);
                     }
                     res.end()
                   })
@@ -219,10 +279,6 @@ app.post("/upload", (req, res) => {
             res.end()
         }
     })
-})
-
-app.get("/api", (request, response) => {
-    response.send('test')
 })
 
 app.get("/domains", (request, response) => {
