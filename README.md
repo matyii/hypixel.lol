@@ -26,10 +26,12 @@ Here is a list of all the keys in the config with their meaning.
 - `uploadkeys` : A list of the upload keys. Format: `{username}_{key}`. The part after the underscore must be the same length as `uploadkeylength`.  
 - `nodeserverport` : The port for the server.
 - `upload_notify` : Get a console log about every upload.
+- `webhook_notify` : Get a Discord webhook log about every upload.
+- `webhook_url` : The URL for the webhook.
 
 ### Progress
 - [x] Page rendering cleanup
-- [ ] Webhooks for uploads
+- [x] Webhooks for uploads
 - [ ] User system
 
 ### API
