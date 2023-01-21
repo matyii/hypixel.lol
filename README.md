@@ -1,7 +1,13 @@
 ![Banner](hypixel.png)
 # hypixel.lol
-A node.js ShareX file uploader with multiple domains, upload keys, embeds and a pretty config generator.  
-This is a great base to start a small image host.
+
+### Features
+- Easy configuration
+- Config generator
+- Embed support
+- Discord webhooks support
+- API
+- Multiple domains support
 
 ### Installation
 - Download / Clone the source code.
