@@ -29,7 +29,6 @@ Here is a list of all the keys in the config with their meaning.
 
 - `maindomain` : This is the main domain, if a domain is not set in the config it falls back to this.  
 - `uploadkeylength` : The length of characters, that are after the username in the upload key.  
-- `uploadkeys` : A list of the upload keys. Format: `{username}_{key}`. The part after the underscore must be the same length as `uploadkeylength`.  
 - `nodeserverport` : The port for the server.
 - `upload_notify` : Get a console log about every upload.
 - `webhook_notify` : Get a Discord webhook log about every upload.
