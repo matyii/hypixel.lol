@@ -1,5 +1,5 @@
 const fs = require('fs')
-const mainDomain = require('../setup.js')('maindomain');
+const mainDomain = require('../functions/config.js')('maindomain');
 const filesizejs = require('filesize')
 const express=require('express')
 const router=express.Router()

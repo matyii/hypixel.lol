@@ -1,5 +1,5 @@
 const { readFile } = require('fs/promises')
-const mainDomain = require('../setup.js')('maindomain');
+const mainDomain = require('./config.js')('maindomain');
 async function sendEmbed(webhookURL, jsonPath, username, filename, url, upload_key) {
     const jsonData = JSON.parse(await readFile(jsonPath));
     const body = JSON.stringify({

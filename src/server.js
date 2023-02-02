@@ -7,7 +7,7 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json())
 var appDir = path.dirname(require.main.filename).toString().replace("src", "")
-var config = require('./setup')
+var config = require('./functions/config')
 
 var folders = ['./src/uploads','./src/uploads/raw','./src/uploads/raw/i','./src/uploads/raw/json']
 const checkFolder = require('./functions/check.js');

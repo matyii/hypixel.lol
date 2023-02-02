@@ -14,7 +14,7 @@
 
 ### Installation
 - Download / Clone the source code.
-- Open a terminal and run `npm install` or `npm i` to install all dependencies.
+- Run the `install.bat` (Windows) or `install.sh` (Linux) file to install the required packages. (You may need to make the Linux version executable by typing `chmod +x install.sh`, then running it with `./install.sh`)
 - Configure the config in `src/data/config.json`.
 - Add your keys in `src/data/keys.json`.
 - Run `node .` or `npm start` to start the node.

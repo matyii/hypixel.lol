@@ -1,7 +1,7 @@
 const fs = require('fs')
 const express=require('express')
 const router=express.Router()
-const uploadKeyLength = require("../../setup")('uploadkeylength')
+const uploadKeyLength = require("../../functions/config")('uploadkeylength')
 router.get("/:uploadkey",(req,res)=>{
     var user = req.params["uploadkey"].substring(0, req.params["uploadkey"].length - (uploadKeyLength + 1))
     var uploads = JSON.parse(fs.readFileSync("./src/data/uploads.json"))
