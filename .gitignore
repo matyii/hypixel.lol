@@ -1,4 +1,4 @@
 node_modules/
-src/raw/i/*
-src/raw/json/*
+src/uploads/raw/i/*
+src/uploads/raw/json/*
 src/data/uploads.json

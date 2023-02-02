@@ -8,12 +8,13 @@ const filesizejs = require('filesize')
 const fs = require('fs')
 const { readFile } = require('fs/promises')
 const path = require('path')
+const cors = require('cors')
 const app = express()
 const getSomeCoolEmojis = require("get-some-cool-emojis")
 const { json } = require('body-parser')
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs')
 
-var folders = ['./src/raw','./src/raw/i','./src/raw/json']
+var folders = ['./src/uploads','./src/uploads/raw','./src/uploads/raw/i','./src/uploads/raw/json']
 const checkFolder = require('./check.js');
 checkFolder(folders)
 
@@ -30,7 +31,7 @@ var webhookURL = config["webhook_url"]
 var webhook_config = __dirname + "/data/webhook.json"
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.json()) 
 
 async function sendEmbed(webhookURL, jsonPath, username, filename, url, upload_key) {
     const jsonData = JSON.parse(await readFile(jsonPath));
@@ -117,13 +118,12 @@ app.get('/key', (req,res) =>{
     res.render('generate')
 })
 
-app.get("/:file", (req, res) => {
+app.get("/uploads/:file", (req, res) => {
     var file = req.params["file"]
-    
-    fs.readdirSync(__dirname + '/raw/i/').forEach( function (item, index) {
+    fs.readdirSync(__dirname + '/uploads/raw/i/').forEach( function (item, index) {
         if (file == item.replace("." + item.split(".")[1], "")) {
-            var filePath = 'raw/i/' + item
-            var fileUrl = "http://"+mainDomain+"/raw/i/" + item
+            var filePath = '/uploads/raw/i/' + item
+            var fileUrl = "http://"+mainDomain+"/uploads/raw/i/" + item
             var fileSize = filesizejs(fs.statSync(__dirname + "/" + filePath).size, {base: 10})
             var extension = item.split(".")[1]
             var uploads = JSON.parse(fs.readFileSync(__dirname + "/data/uploads.json"))
@@ -166,12 +166,12 @@ app.get("/:file", (req, res) => {
     })
 })
 
-app.get("/raw/i/:file", (req, res) => {
+app.get("/uploads/raw/i/:file", (req, res) => {
     var file = req.params["file"]
     
-    fs.readdirSync(__dirname + '/raw/i/').forEach( function (item, index) {
+    fs.readdirSync(__dirname + '/uploads/raw/i/').forEach( function (item, index) {
         if (file == item) {
-            var filePath = __dirname + '/raw/i/' + item
+            var filePath = __dirname + '/uploads/raw/i/' + item
             res.sendFile(filePath)
         }
     })
@@ -201,14 +201,14 @@ app.post("/upload", (req, res) => {
 
         var hash = randomstring.generate(8)
         var extension = path.extname(files.file.name).replace(".", "")
-        var url = `${mainDomain}/${hash}`
+        var url = `${mainDomain}/uploads/${hash}`
 
         if (uploadKeys.includes(uploadKey)) {
             if (allowedExtensions.includes(extension)) {
-                fs.rename(files.file.path, __dirname + '/raw/i/' + hash + "." + extension, function (err) {
+                fs.rename(files.file.path, __dirname + '/uploads/raw/i/' + hash + "." + extension, function (err) {
                     if (err) throw err
 
-                    fs.writeFileSync(__dirname + "/raw/json/" + hash + "-embed.json", `{"version":"1.0","type":"link","author_name":"${embedAuthor}"}`)
+                    fs.writeFileSync(__dirname + "/uploads/raw/json/" + hash + "-embed.json", `{"version":"1.0","type":"link","author_name":"${embedAuthor}"}`)
 
                     fs.readFile(__dirname + '/data/uploads.json', function (error, data) {
                         if (error) throw error
@@ -216,7 +216,7 @@ app.post("/upload", (req, res) => {
                 
                         uploads[`${hash}.${extension}`] = {}
                         uploads[`${hash}.${extension}`]["user"] = user
-                        uploads[`${hash}.${extension}`]["url"] = `http://${mainDomain}/${hash}`
+                        uploads[`${hash}.${extension}`]["url"] = `http://${mainDomain}/uploads/${hash}`
                         uploads[`${hash}.${extension}`]["oembed"] = `http://${mainDomain}/raw/${hash}-embed.json`
                         uploads[`${hash}.${extension}`]["embed"] = {}
                         uploads[`${hash}.${extension}`]["embed"]["title"] = embedTitle
@@ -228,15 +228,15 @@ app.post("/upload", (req, res) => {
 
                     if (domains.includes(fields["domain"])) {
                         if (subdomain != "") {
-                            res.write(`http://${subdomain}.${fields["domain"]}/${hash}`)
+                            res.write(`http://${subdomain}.${fields["domain"]}/uploads/${hash}`)
                         } else {
-                            res.write(`http://${fields["domain"]}/${hash}`)
+                            res.write(`http://${fields["domain"]}/uploads/${hash}`)
                         }
                     } else {
                         if (subdomain != "") {
-                            res.write(`http://${subdomain}.${mainDomain}/${hash}`)
+                            res.write(`http://${subdomain}.${mainDomain}/uploads/${hash}`)
                         } else {
-                            res.write(`http://${mainDomain}/${hash}`)
+                            res.write(`http://${mainDomain}/uploads/${hash}`)
                         }
                     }
 
@@ -258,6 +258,10 @@ app.post("/upload", (req, res) => {
             res.end()
         }
     })
+})
+
+app.get("/api", (request, response) => {
+    response.render("api")
 })
 
 app.get("/domains", (request, response) => {
