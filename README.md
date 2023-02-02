@@ -37,6 +37,7 @@ Here is a list of all the keys in the config with their meaning.
 ### Progress
 - [x] Page rendering cleanup
 - [x] Webhooks for uploads
+- [ ] Endpoints cleanup
 - [ ] User system
 
 ### API
