@@ -1,5 +1,8 @@
 ![Banner](hypixel.png)
 # hypixel.lol
+![image]({https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E})
+![image]({https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white})
+![image]({https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white})
 
 ### Features
 - Easy configuration
@@ -43,13 +46,14 @@ Here is a list of all the keys in the config with their meaning.
 ### How to make new endpoints
 To make a new endpoint you need to make a file in the `routes` folder with your name of choice. Example: `example.js`
 The empty version should look like this:
-
-    const express=require('express')
-    const router=express.Router()
-    router.get("/",(req,res)=>{
-        res.send('Hello!')
-    })
-    module.exports=router;
+```js
+const express=require('express')
+const router=express.Router()
+router.get("/",(req,res)=>{
+    res.send('Hello!')
+})
+module.exports=router;
+```
 
 In your `server.js` you need to add two lines
 - Importing the endpoint:
