@@ -10,16 +10,38 @@
     </head>
     <body>
         <div class="center">
-            <h1>lajos</h1>
-            <!--<div class="card">
-                <div class="card-content" style="font-size: 1.35rem;">
-                    <h1 class="card-title" style="margin-bottom: 0px!important; margin-top: 0px;">hypixel.lol</h1>
-                    <p style="margin: 0;">An image host that cares.</p>
+            <div class="card" style="width: 600px!important;">
+                <div class="card-content" style="font-size: 1rem;">
+                    <h1 class="card-title" style="margin-bottom: 0px!important; margin-top: 0px;">hypixel.lol API Documentation</h1>
+                    <div style="margin-bottom: 10px">
+                        <p style="margin: 0;">Get our domains in a list</p>
+                        <p style="margin: 0;">Send a <code>GET</code> request to <code class="code-snippet">/api/domains</code></p>
+                        <p style="margin: 0;">You will recieve a JSON list with our avaliable domains</p>
+                        <p style="margin: 0;">Response:</p>
+                        <code class="code-snippet">
+                            ["localhost"]
+                        </code>
+                    </div>
+                    <div style="margin-bottom: 10px">
+                        <p style="margin: 0;">Get uploaded files from upload key</p>
+                        <p style="margin: 0;">Send a <code>GET</code> request to <code class="code-snippet">/api/uploads/uploadkeyhere</code></p>
+                        <p style="margin: 0;">You will recieve a JSON list with the links</p>
+                        <p style="margin: 0;">Response(s):</p>
+                        <p>Success:</p>
+                        <code class="code-snippet">
+                            ["http://localhost/uploads/example"]
+                        </code>
+                        <br>
+                        <p>Failure:</p>
+                        <code class="code-snippet">
+                            {"response":"fail","reason":"no uploads found","status":404}
+                        </code>
+                    </div>
                 </div>
-                <div class="card-footer">
+                <!--<div class="card-footer">
                     <a href="/config" class="button button-block">Config Generator</a>
-                </div>
-            </div>-->
+                </div>-->
+            </div>
         </div>        
     </body>
 </html>

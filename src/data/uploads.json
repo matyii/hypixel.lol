@@ -1,1 +1,12 @@
-{}
+{
+    "PInbnAwv.png": {
+        "user": "matyii",
+        "url": "http://localhost/uploads/PInbnAwv",
+        "oembed": "http://localhost/uploads/PInbnAwv-embed.json",
+        "embed": {
+            "title": " ",
+            "description": " ",
+            "colour": "#ff0000"
+        }
+    }
+}

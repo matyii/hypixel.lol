@@ -221,3 +221,8 @@ input::-webkit-inner-spin-button {
 h1, h2, h3, h4, h5 {
     font-weight: bold!important;
 }
+
+.code-snippet {
+    background-color: #131313;
+    margin: 10px;
+}
