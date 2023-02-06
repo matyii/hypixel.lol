@@ -85,6 +85,7 @@ body {
 
 .button-block {
     display: block!important;
+    margin-bottom: 5px;
 }
 
 a {
@@ -225,4 +226,61 @@ h1, h2, h3, h4, h5 {
 .code-snippet {
     background-color: #131313;
     margin: 10px;
+}
+
+#profilepic {
+    width: 40%;
+    border-radius: 50%;
+    float: left;
+    margin-bottom: 15px;
+}
+
+#banner {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+}
+  
+.user-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.user-profile-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+  
+#user-profilepic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+  
+
+#user-banner {
+    width: 90%;
+    border-radius: 10px;
+    max-width: 500px;
+    margin-bottom: 25px;
+}
+  
+  
+@media (max-width: 500px) {
+.user-profile-section {
+    flex-direction: column;
+    align-items: center;
+    }
 }

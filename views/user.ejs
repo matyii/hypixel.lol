@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>User profile - hypixel.lol</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+        <link rel="stylesheet" href="assets/style.css">
+        <link rel="stylesheet" href="https://use.typekit.net/obf6rgz.css">        
+    </head>
+    <body>
+        <div class="center">
+            <div class="card user-card">
+                <div class="user-card-content">
+                  <h1 class="user-card-title">Welcome back!</h1>
+                  <div class="user-profile-section">
+                    <a target="_blank" href="<%=profilepic%>"><img id="user-profilepic" src="<%=profilepic%>" alt="Profile picture"></a>
+                    <div class="user-info">
+                        <p><strong>UID: </strong><%=uid%></p>
+                        <p><strong>Username: </strong><%=username%></p>
+                        <p><strong>Key: </strong><%=uploadkey%></p>
+                        <p><strong>Uploads: </strong><a target="_blank" href="http://<%=maindomain%>/api/uploads/<%=uploadkey%>"><%=uploads%></a></p>
+                    </div>
+                  </div>
+                  <a target="_blank" href="<%=banner%>"><img id="user-banner" src="<%=banner%>" alt="Banner"></a>
+                </div>
+                <div class="card-footer user-card-footer">
+                  <a href="/config" class="button button-block">Config Generator</a>
+                </div>
+              </div>
+        </div>
+    </body>
+</html>

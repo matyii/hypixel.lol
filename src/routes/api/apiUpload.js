@@ -20,7 +20,7 @@ router.post("/",(req,res)=>{
     var form = new formidable.IncomingForm()
     form.parse(req, function (err, fields, files) {
         var uploadKeys = JSON.parse(fs.readFileSync("./src/data/keys.json"))
-        var uploadKey = fields["upload-key"]
+        var uploadKey = fields["upload_key"]
         var user = uploadKey.substring(0, uploadKey.length - (uploadKeyLength + 1))
         var embedAuthor = fields["embed-author"]
         var embedTitle = fields["embed-title"]
@@ -40,8 +40,8 @@ router.post("/",(req,res)=>{
         var hash = randomstring.generate(8)
         var extension = path.extname(files.file.name).replace(".", "")
         var url = `${mainDomain}/uploads/${hash}`
-
-        if (uploadKeys.includes(uploadKey)) {
+        
+        if (Object.values(uploadKeys).some(x => x.upload_key === uploadKey)) {
             if (allowedExtensions.includes(extension)) {
                 fs.rename(files.file.path,'./src/uploads/raw/i/' + hash + "." + extension, function (err) {
                     if (err) throw err

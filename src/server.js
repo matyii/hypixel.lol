@@ -1,17 +1,27 @@
 const express = require('express')
+const app = express()
+const session = require('express-session')
 const bodyParser = require('body-parser')
 const serveIndex = require('serve-index')
-const path = require('path')
-const app = express()
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json())
-var appDir = path.dirname(require.main.filename).toString().replace("src", "")
+var appDir = __dirname.toString().replace("src", "")
 var config = require('./functions/config')
 
 var folders = ['./src/uploads','./src/uploads/raw','./src/uploads/raw/i','./src/uploads/raw/json']
 const checkFolder = require('./functions/check.js');
+const passport = require('./functions/discord')
 checkFolder(folders)
+
+app.use(session({
+    secret: 'hypixel.lol',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const homeRoute = require("./routes/home")
 const configRoute = require("./routes/config")
@@ -40,6 +50,12 @@ app.use("/api/domains", apiDomainsRoute)
 app.use("/api/gen", apiGenerate)
 app.use("/api/uploads", apiUploads)
 app.use("/api/upload", apiUpload)
+
+const userLogin = require('./routes/user/login')
+const loginCallback = require('./routes/user/callback')
+
+app.use("/user/login", userLogin)
+app.use("/user", loginCallback)
 
 app.listen(config("nodeserverport"), () => {
     console.log(`[SUCCESS] Successfully started on port ${config('nodeserverport')}!`)
