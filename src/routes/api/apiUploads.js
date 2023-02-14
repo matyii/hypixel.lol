@@ -11,16 +11,6 @@ router.get("/:uploadkey",(req,res)=>{
             uploads2.push(uploads[index]["url"])
         }
     })
-    if (uploads2.length === 0) {
-        res.status(404).json({
-            "response": "fail",
-            "reason": "no uploads found",
-            "status": 404
-        })
-    }
-    else {
-        res.json(uploads2)
-    }
-    
+    res.json(uploads2)
 })
 module.exports=router;

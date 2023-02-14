@@ -14,15 +14,6 @@ const checkFolder = require('./functions/check.js');
 const passport = require('./functions/discord')
 checkFolder(folders)
 
-app.use(session({
-    secret: 'hypixel.lol',
-    resave: false,
-    saveUninitialized: false
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 const homeRoute = require("./routes/home")
 const configRoute = require("./routes/config")
 const genRedirectRoute = require("./routes/genRedirect")
@@ -51,11 +42,15 @@ app.use("/api/gen", apiGenerate)
 app.use("/api/uploads", apiUploads)
 app.use("/api/upload", apiUpload)
 
-const userLogin = require('./routes/user/login')
-const loginCallback = require('./routes/user/callback')
+const auth = require("./functions/discord");
+auth(app);
 
-app.use("/user/login", userLogin)
-app.use("/user", loginCallback)
+const userDashboard = require("./routes/user/dashboard")
+app.use("/dashboard", userDashboard)
+
+// app.get("/dashboard", (req, res) => {
+//     res.send(`Access token: ${accessToken}`);
+//   });
 
 app.listen(config("nodeserverport"), () => {
     console.log(`[SUCCESS] Successfully started on port ${config('nodeserverport')}!`)

@@ -1,26 +1,51 @@
-var DiscordStrategy = require('passport-discord').Strategy;
-var passport = require('passport')
+const passport = require("passport");
+const DiscordStrategy = require("passport-discord").Strategy;
+const session = require("express-session");
+const config = require("../data/discordconfig.json");
 
-const clientID = require('./discordConfig.js')('clientID');
-const clientSecret = require('./discordConfig.js')('clientSecret');
-const callbackURL = require('./discordConfig.js')('redirectURL');
-
-passport.use(new DiscordStrategy({
-    clientID: clientID,
-    clientSecret: clientSecret,
-    callbackURL: callbackURL,
-    scope: ['identify', 'email']
-},
-function discordPassport(accessToken, refreshToken, profile, cb) {
-    return cb(null, profile);
-}))
-
-passport.serializeUser(function(user, cb) {
-    cb(null, user);
-});
-  
-  passport.deserializeUser(function(obj, cb) {
-    cb(null, obj);
+passport.serializeUser((user, done) => {
+  done(null, user);
 });
 
-module.exports = passport;
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.use(
+  new DiscordStrategy(
+    {
+      clientID: config.clientID,
+      clientSecret: config.clientSecret,
+      callbackURL: config.callbackURL,
+      scope: ["identify"],
+    },
+    (accessToken, refreshToken, profile, done) => {
+      profile.accessToken = accessToken;
+      return done(null, profile);
+    }
+  )
+);
+
+module.exports = (app) => {
+  app.use(
+    session({
+      secret: "lajos",
+      resave: false,
+      saveUninitialized: false,
+    })
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  app.get("/login", passport.authenticate("discord"));
+  app.get(
+    "/login/callback",
+    passport.authenticate("discord", {
+      failureRedirect: "/login",
+    }),
+    (req, res) => {
+      res.redirect("/dashboard");
+    }
+  );
+};
