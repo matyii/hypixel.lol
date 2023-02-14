@@ -20,9 +20,10 @@
             <div class="card-content">
                <h2 class="card-title"><%= item%> (<%= fileSize%>)</h2>
                <video style="max-width: 100%; height: auto; border-radius: 10px;" controls>
-                  <source src="<%= filePath%>">
+                  <source src="<%= fileUrl%>">
                </video>
-               <h2 class="card-content">Uploaded by: <%= user%></h2>
+               <h2 class="card-content">Uploaded by: <span style="color: #9034ba;"><%= user%></span></h2>
+               <a style="margin-top: 20px;" href="<%= fileUrl%>" class="button button-block" download>Download</a> 
             </div>
          </div>
       </div>
