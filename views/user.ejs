@@ -18,15 +18,63 @@
                     <div class="user-info">
                         <p><strong>UID: </strong><%=uid%></p>
                         <p><strong>Username: </strong><%=username%></p>
-                        <p><strong>Key: </strong><%=uploadkey%></p>
+                        <p><strong>Key: </strong><span id="upload-key"><%=uploadkey%></span></p>
                         <p><strong>Uploads: </strong><a target="_blank" href="http://<%=maindomain%>/api/uploads/<%=uploadkey%>"><%=uploads%></a></p>
                     </div>
                   </div>
                 </div>
                 <div class="card-footer user-card-footer">
-                  <a href="/config" class="button button-block">Config Generator</a>
+                  <a onclick="downloadConfig()" class="button button-block" style="cursor: pointer; user-select: none;">Download your config</a>
+                  <textarea id="config-result" placeholder="generated config here..." style="display: none; background-color: #171717; color: #9b9b9b; border: none; overflow-y: hidden; width: 100%; height: 100%; font-size: 80.7%; resize: none;" readonly></textarea>
                 </div>
               </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+          var configJson = {};
+            function generateConfig() {
+              var configResultTextarea = document.getElementById('config-result');
+      
+              var uploadKey = `<%=uploadkey%>`
+              config = {
+                          "Version": "13.4.0",
+                          "Name": "hypixel.lol",
+                          "DestinationType": "ImageUploader, FileUploader",
+                          "RequestMethod": "POST",
+                          "RequestURL": "http://<%=maindomain%>/api/upload",
+                          "Body": "MultipartFormData",
+                          "Arguments": {
+                            "upload-key": uploadKey,
+                          },
+                          "FileFormName": "file"
+                        }
+      
+              configJson = JSON.stringify(config, null, 2);
+      
+              configResultTextarea.value = JSON.stringify(config, null, 2);
+      
+              setTimeout(generateConfig, 1);
+            }
+      
+            function downloadConfig() {
+              var uploadKey = `<%=uploadkey%>`
+              var filenameLength = document.getElementById('filename-length');
+      
+              var filename = "config.sxcu";
+              var text = configJson;
+              var element = document.createElement('a');
+      
+              element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+              element.setAttribute('download', filename);
+      
+              element.style.display = 'none';
+              document.body.appendChild(element);
+      
+              element.click();
+      
+              document.body.removeChild(element);
+            }
+            generateConfig();
+        </script>
     </body>
 </html>

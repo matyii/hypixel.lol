@@ -93,132 +93,6 @@ a {
     text-decoration: none!important;
 }
 
-#embedViewer {
-    border-radius: 4px!important;
-    background-color: #2f3136!important;
-}
-  
-#embedViewer_header {
-    border: none!important;
-    background-color: #2f3136!important;
-    padding-bottom: 0px!important;
-}
-
-#embedViewer_footer {
-    font-size: 0.75rem!important;
-    border: none!important;
-    background-color: #2f3136!important;
-}
-
-#embedViewer_author {
-    font-size: 0.75rem!important;
-    line-height: 1rem!important;
-    font-weight: 400!important;
-    grid-column: 1/1!important;
-}
-
-#embedViewer_body {
-    margin-top: 8px!important;
-}
-
-#embedViewer_title {
-    font-size: 1rem!important;
-    font-weight: 600!important;
-    display: inline-block!important;
-    grid-column: 1/1!important;
-    color: white!important;
-}
-
-#embedViewer_description {
-    font-size: 0.875rem!important;
-    line-height: 1.125rem!important;
-    font-weight: 400!important;
-    white-space: pre-line!important;
-    grid-column: 1/1!important;
-    color: #ebebeb!important;
-    margin-top: 8px!important;
-    resize: none!important;
-    overflow: hidden!important;
-}
-
-.embedViewer-input {
-    background-color: transparent!important;
-    border: none!important;
-    width: 100%!important;
-    padding: 0px!important;
-    border-radius: 0px!important;
-}
-
-.embedViewer-input:focus {
-    border: none!important;
-}
-
-.embedViewer-input {
-    color: white!important;
-}
-
-input[type=text] {
-    outline: none!important;
-}
-
-input[type=text]:focus {
-    border: none!important;
-}
-
-textarea {
-    outline: none!important;
-}
-
-textarea:focus {
-    border: none!important;
-}
-
-textarea:focus,
-textarea.form-control:focus,
-input.form-control:focus,
-input[type=text]:focus,
-input[type=password]:focus,
-input[type=email]:focus,
-input[type=number]:focus,
-[type=text].form-control:focus,
-[type=password].form-control:focus,
-[type=email].form-control:focus,
-[type=tel].form-control:focus,
-[contenteditable].form-control:focus {
-    box-shadow: none!important;
-}
-input {
-    border: none!important;
-    outline: none!important;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none!important;
-    appearance: none!important;
-    margin: 0!important;
-}
-.custom-input {
-    padding: .375rem .75rem!important;
-    border-radius: .25rem!important;
-}
-.input-group > .custom-input {
-    position: relative!important;
-    flex: 1 1 auto!important;
-    width: 1%!important;
-    min-width: 0!important;
-    margin-bottom: 0!important;
-}
-.input-group-text {
-    border: none!important;
-}
-.form-control, .form-control:read-only, .custom-input {
-    border: 1px solid #171717!important;
-    background-color: #171717!important;
-}
-.form-control:focus, .custom-input:focus {
-    border: none!important;
-}
-
 h1, h2, h3, h4, h5 {
     font-weight: bold!important;
 }
@@ -267,8 +141,12 @@ h1, h2, h3, h4, h5 {
     height: 100px;
     border-radius: 50%;
     margin-right: 15px;
+    transition: 0.3s;
 }
   
+#user-profilepic:hover{
+    transform: scale(1.1);
+}
 
 #user-banner {
     width: 90%;

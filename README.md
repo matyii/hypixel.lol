@@ -6,11 +6,15 @@
 
 ### Features
 - Easy configuration
-- Config generator
-- Embed support
+![image](/preview/config.png)
+- Automatic config generation for each user
 - Discord webhooks support
 - API
-- Multiple domains support
+- A user-friendly dashboard with Discord login integration
+![image](/preview/user.png)
+
+### Embeds and multiple domains gone?!?!
+Currently I removed them, to declutter some of the code. But soon, i'm trying to implement a dashboard management system, where the use can customize its embed and domains, without having to mess with the config file.
 
 ### Installation
 - Download / Clone the source code.
@@ -68,10 +72,10 @@ In your endpoint JS file, leave the router endpoint on `"/"`, since you will be 
 - Make an application on the [Discord Developer Page](https://discord.com/developers/applications)
 - Go to the `OAuth2` Tab
 - Copy the `Client ID` and the `Client Secret`, and paste them to the `discordconfig.json` file in the `data` folder.
-- Make a redirect URL, that matches the route with one, in the config and the route name in line 58 in `server.js`
+- Make a redirect URL, that matches the route with the one, in the config
 
-```js
-app.use("/user", loginCallback)
+```json
+"callbackURL": "http://localhost/login/callback"
 ```
 
 
@@ -82,7 +86,7 @@ To add new folders to the checker, you simply add a new list element containing 
 - **GET** `/api` : API Documentation
 - **GET** `/api/uploads/:uploadkey` : Returns a list of uploads uploaded with the upload key.
 - **GET** `/api/domains` : Returns a list of all the domains.
-- **POST** `/api/upload`: This is the upload URL, and you can use other apps to upload files. In the post body you only need the `upload_key` and the `file`.
+- **POST** `/api/upload`: This is the upload URL, and you can use other apps to upload files. In the post body you only need the `upload-key` and the `file`.
 
 ### Copyright
 hypixel.lol is solely owned and developed by [Benny](https://github.com/bentettmar). All rights go towards the developers.
