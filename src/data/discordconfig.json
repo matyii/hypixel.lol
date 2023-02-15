@@ -1,5 +1,5 @@
 {
-    "clientID": "1046500023099195392",
-    "clientSecret": "OVlXpXCPFn2uIRwUwyCwdV-gCWLRWufP",
+    "clientID": "oops",
+    "clientSecret": "oops",
     "callbackURL": "http://localhost/login/callback"
 }

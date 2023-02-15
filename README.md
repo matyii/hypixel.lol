@@ -9,6 +9,7 @@
 ![image](/preview/config.png)
 - Automatic config generation for each user
 - Discord webhooks support
+![image](/preview/webhook.png)
 - API
 - A user-friendly dashboard with Discord login integration
 ![image](/preview/user.png)
