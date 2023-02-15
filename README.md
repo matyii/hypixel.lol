@@ -5,11 +5,11 @@
 ![image](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
 
 ### Features
-- Easy configuration [image](/preview/config.png)
+- Easy configuration [(Image)](/preview/config.png)
 - Automatic config generation for each user
-- Discord webhooks support [image](/preview/webhook.png)
+- Discord webhooks support [(Image)](/preview/webhook.png)
 - API
-- A user-friendly dashboard with Discord login integration [image](/preview/user.png)
+- A user-friendly dashboard with Discord login integration [(Image)](/preview/user.png)
 
 ### Embeds and multiple domains gone?!?!
 Currently I removed them, to declutter some of the code. But soon, i'm trying to implement a dashboard management system, where the use can customize its embed and domains, without having to mess with the config file.
