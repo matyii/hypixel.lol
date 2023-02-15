@@ -17,7 +17,7 @@ passport.use(
       clientID: config.clientID,
       clientSecret: config.clientSecret,
       callbackURL: config.callbackURL,
-      scope: ["identify"],
+      scope: ["identify", "email"],
     },
     (accessToken, refreshToken, profile, done) => {
       profile.accessToken = accessToken;
@@ -29,7 +29,7 @@ passport.use(
 module.exports = (app) => {
   app.use(
     session({
-      secret: "lajos",
+      secret: "hypixel.lol",
       resave: false,
       saveUninitialized: false,
     })
