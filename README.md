@@ -11,8 +11,9 @@
 - API
 - A user-friendly dashboard with Discord login integration [(Image)](/preview/user.png)
 
-### Embeds and multiple domains gone?!?!
-Currently I removed them, to declutter some of the code. But soon, i'm trying to implement a dashboard management system, where the use can customize its embed and domains, without having to mess with the config file.
+### Embeds gone?!?!
+Currently I removed embed, to declutter some of the code. But soon, i'm trying to implement a dashboard management system, where the use can customize its embed and domains, without having to mess with the config file.
+(`Edit`: Domains dashboard working now!)
 
 ### Installation
 - Download / Clone the source code.

@@ -88,7 +88,7 @@ body {
     margin-bottom: 5px;
 }
 
-a {
+button,a {
     color: inherit!important;
     text-decoration: none!important;
 }
@@ -161,4 +161,24 @@ h1, h2, h3, h4, h5 {
     flex-direction: column;
     align-items: center;
     }
+}
+
+#subdomain {
+    width: 100px;
+    height: 1.1em;
+}
+
+.selectDomain {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.selectDomain label {
+    font-weight: bolder;
+}
+
+#domainSubmit {
+    width: 100%;
+    border: none;
+    font-family: proxima-soft, sans-serif!important;
 }

@@ -1,0 +1,56 @@
+<!-- <!DOCTYPE html> 
+<html lang="en">
+   <head>
+      <title>hypixel.lol — Domain configuration</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../assets/style.css">
+      <link rel="stylesheet" href="https://use.typekit.net/obf6rgz.css">
+   </head>
+   <body>
+      <div class="center">
+         <div class="card">
+            <div class="card-content">
+                <h1>Configure your domains</h1>
+                <h2>Current: <%=subdomain%>.<%=domain%></h2>
+            </div>
+         </div>
+      </div>
+   </body>
+</html> -->
+
+<!DOCTYPE html> 
+<html lang="en">
+   <head>
+      <title>hypixel.lol — Domain configuration</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../assets/style.css">
+      <link rel="stylesheet" href="https://use.typekit.net/obf6rgz.css">
+   </head>
+   <body>
+      <div class="center">
+         <div class="card" style="width: 400px!important;">
+            <div class="card-content">
+               <h1>Configure your domains</h1>
+               <h2>Current: <%=subdomain%>.<%=domain%></h2>
+               <form action="" method="post">
+                  <div class="selectDomain">
+                    <label for="subdomain">Subdomain:</label>
+                    <textarea style="resize:none" id="subdomain" name="subdomain"><%=subdomain%></textarea>
+                    <br>
+                    <label for="domain">Domain:</label>
+                    <select id="domain" name="domain">
+                        <% for (let domain of domains) { %>
+                        <option value="<%= domain %>" <%= domain === selectedDomain ? 'selected' : '' %>>
+                            <%= domain %>
+                        </option>
+                        <% } %>
+                    </select>
+                  </div>
+                  <br>
+                  <button type="submit" class="button" id="domainSubmit">Save</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

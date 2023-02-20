@@ -36,7 +36,9 @@ const auth = require("./functions/discord");
 auth(app);
 
 const userDashboard = require("./routes/user/dashboard")
+const domainDashboard = require("./routes/user/domainDash")
 app.use("/dashboard", userDashboard)
+app.use("/dashboard/domain", domainDashboard)
 
 app.listen(config("nodeserverport"), () => {
     console.log(`[SUCCESS] Successfully started on port ${config('nodeserverport')}!`)
