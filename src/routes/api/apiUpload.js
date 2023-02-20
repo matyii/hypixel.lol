@@ -6,8 +6,6 @@ const upload_notify = require("../../functions/config")('upload_notify')
 const webhook_notify = require("../../functions/config")('webhook_notify')
 const webhookURL = require("../../functions/config")('webhook_url')
 var webhook_config = "./src/data/webhook.json"
-const randomColor = require('randomcolor')
-const getSomeCoolEmojis = require("get-some-cool-emojis")
 const randomstring = require("randomstring")
 const path = require('path')
 var allowedExtensions = ["png", "jpg", "jpeg", "gif", "webm", "mp4", "mov"]
@@ -28,7 +26,7 @@ router.post("/", (req, res) => {
       const matchingKey = Object.keys(uploadKeys).find((key) => uploadKeys[key].upload_key === uploadKey);
       if (matchingKey) {
         if (allowedExtensions.includes(extension)) {
-          const { discord_id, domain, subdomain } = uploadKeys[matchingKey];
+          const { domain, subdomain } = uploadKeys[matchingKey];
           fs.rename(files.file.path, `./src/uploads/raw/i/${hash}.${extension}`, (err) => {
             if (err) throw err;
   
@@ -40,9 +38,7 @@ router.post("/", (req, res) => {
               uploads[`${hash}.${extension}`]["user"] = user;
               uploads[`${hash}.${extension}`]["url"] = `http://${mainDomain}/uploads/${hash}`;
   
-              fs.writeFile(
-                "./src/data/uploads.json",
-                JSON.stringify(uploads, null, 4),
+              fs.writeFile("./src/data/uploads.json", JSON.stringify(uploads, null, 4),
                 (error2) => {
                   if (error2) throw error2;
                 }
@@ -62,6 +58,7 @@ router.post("/", (req, res) => {
             if (webhook_notify == true) {
               sendEmbed(webhookURL, webhook_config, user, `${hash}.${extension}`, url, uploadKey);
             }
+
             res.end();
           });
         } else {
@@ -73,6 +70,6 @@ router.post("/", (req, res) => {
         res.end();
       }
     });
-  });
+});
 
 module.exports=router;
