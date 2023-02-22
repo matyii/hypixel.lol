@@ -33,7 +33,6 @@ router.get('/', isAuthenticated, async (req, res) => {
 
   res.render('domainConfig', { domain: domain, subdomain: subdomain, domains: domainsData, selectedDomain: selectedDomain });
 });
-  
 
 router.post('/', async (req, res) => {
     try {

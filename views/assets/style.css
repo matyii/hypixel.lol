@@ -145,7 +145,8 @@ h1, h2, h3, h4, h5 {
 }
   
 #user-profilepic:hover{
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0px 0px 10px black);
 }
 
 #user-banner {

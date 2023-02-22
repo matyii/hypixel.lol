@@ -27,12 +27,19 @@
                   <a onclick="downloadConfig()" class="button button-block" style="cursor: pointer; user-select: none;">Download your config</a>
                   <br>
                   <a href="http://<%=maindomain%>/dashboard/domain" class="button button-block">Configure your domains</a>
+                  <br>
+                  <a onclick="logout()" class="button button-block" style="cursor: pointer; user-select: none;">Log out</a>
                   <textarea id="config-result" placeholder="generated config here..." style="display: none; background-color: #171717; color: #9b9b9b; border: none; overflow-y: hidden; width: 100%; height: 100%; font-size: 80.7%; resize: none;" readonly></textarea>
                 </div>
               </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
+          function logout() {
+            fetch('/logout', { method: 'GET' })
+              .then(() => window.location = '/');
+          }
+
           var configJson = {};
             function generateConfig() {
               var configResultTextarea = document.getElementById('config-result');
