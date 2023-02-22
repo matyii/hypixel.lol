@@ -183,3 +183,22 @@ h1, h2, h3, h4, h5 {
     border: none;
     font-family: proxima-soft, sans-serif!important;
 }
+
+#logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+#logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0px 0px 10px black);
+}
+
+.gradient-text {
+    background: linear-gradient(#759aff,#d375ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
