@@ -4,6 +4,9 @@
 ![image](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![image](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
 
+# Support
+For support, join our [Discord Server](https://discord.gg/9YWvZNAmb9)
+
 ### Features
 - Easy configuration [(Image)](/preview/config.png)
 - Automatic config generation for each user [(Image)](/preview/key.png)
