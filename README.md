@@ -6,29 +6,21 @@
 
 ### Features
 - Easy configuration [(Image)](/preview/config.png)
-- Automatic config generation for each user
+- Automatic config generation for each user [(Image)](/preview/key.png)
 - Discord webhooks support [(Image)](/preview/webhook.png)
-- API
 - A user-friendly dashboard with Discord login integration [(Image)](/preview/user.png)
-
-### Embeds gone?!?!
-Currently I removed embed, to declutter some of the code. But soon, i'm trying to implement a dashboard management system, where the use can customize its embed and domains, without having to mess with the config file.
-(`Edit`: Domains dashboard working now!)
+- Domain management from the dashboard without any hassle [(Image)](/preview/domains.png)
 
 ### Installation
 - Download / Clone the source code.
-- Run the `install.bat` (Windows) or `install.sh` (Linux) file to install the required packages. (You may need to make the Linux version executable by typing `chmod +x install.sh`, then running it with `./install.sh`)
-- Configure the config in `src/data/config.json`.
-- Add your keys in `src/data/keys.json`.
+- Run `npm i` to install the packages.
+- After installing you can use the provided setup by typing `node setup.js` to the console. (You can enter the data manually to the file too)
 - Run `node .` or `npm start` to start the node.
 
-### Setup
-To add domains you need to first open `src/data/domains.json` and add the domains to the list.  
-Then you need to point the domains in the list to the server hosting hypixel.lol.  
-Finally, all domains pointed should update and they should be working.  
-
-To use subdomains you need to setup a wildcard subdomain (`*`) in each domain.  
-This allows anything to be put infront of the domain. Allowing custom subdomains, even ones that other people may already be using.
+### Installation (Linux)
+For Linux systems everything is automated with the bash script, all you need to do:
+- Make the script executable with `chmod +x install.sh`
+- And running it with `./install.sh`
 
 ### Config
 Here is a list of all the keys in the config with their meaning.  
@@ -45,6 +37,7 @@ Here is a list of all the keys in the config with their meaning.
 - [x] Webhooks for uploads
 - [X] Endpoints cleanup
 - [ ] Complete user system with Dashboard
+- [ ] Embed Support
 
 ### How to make new endpoints
 To make a new endpoint you need to make a file in the `routes` folder with your name of choice. Example: `example.js`

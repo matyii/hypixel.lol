@@ -3,6 +3,6 @@
     "uploadkeylength": 12,
     "nodeserverport": 80,
     "upload_notify": true,
-    "webhook_notify": true,
-    "webhook_url": "oops"
+    "webhook_notify": false,
+    "webhook_url": ""
 }

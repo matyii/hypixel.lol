@@ -24,6 +24,7 @@
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
     "path": "^0.12.7",
+    "prompt-sync": "^4.2.0",
     "randomcolor": "^0.6.2",
     "randomstring": "^1.2.1",
     "serve-index": "^1.9.1"
