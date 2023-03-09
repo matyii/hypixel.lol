@@ -1,0 +1,46 @@
+[
+    {
+        "endpoint":"/",
+        "location":"./routes/home"
+    },
+    {
+        "endpoint":"/domains",
+        "location":"./routes/domains"
+    },
+    {
+        "endpoint":"/uploads/raw/i",
+        "location":"./routes/rawfile"
+    },
+    {
+        "endpoint":"/uploads",
+        "location":"./routes/preview"
+    },
+    {
+        "endpoint":"/api",
+        "location":"./routes/api/api"
+    },
+    {
+        "endpoint":"/api/domains",
+        "location":"./routes/api/apiDomains"
+    },
+    {
+        "endpoint":"/api/uploads",
+        "location":"./routes/api/apiUploads"
+    },
+    {
+        "endpoint":"/api/upload",
+        "location":"./routes/api/apiUpload"
+    },
+    {
+        "endpoint": "/dashboard",
+        "location": "./routes/user/dashboard"
+    },
+    {
+        "endpoint": "/dashboard/domain",
+        "location": "./routes/user/domainDash"
+    },
+    {
+        "endpoint": "/dashboard/embed",
+        "location": "./routes/user/embedDash"
+    }
+ ]

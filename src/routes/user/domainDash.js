@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
           console.error(err);
           res.status(500).send('Error writing to file');
         } else {
-          res.redirect('/dashboard/domain');
+          res.redirect('/dashboard');
         }
       });
     } catch (err) {

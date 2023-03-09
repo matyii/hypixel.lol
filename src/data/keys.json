@@ -3,6 +3,10 @@
     "discord_id": "384707717077663744",
     "upload_key": "matyii_UyXr90Q1CF81",
     "domain": "localhost",
-    "subdomain": ""
+    "subdomain": "",
+    "embedAuthor": "matyii",
+    "embedTitle": "hello",
+    "embedDescription": "no",
+    "embedColor": "#28016f"
   }
 }

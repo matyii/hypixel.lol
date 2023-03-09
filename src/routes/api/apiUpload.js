@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
       const matchingKey = Object.keys(uploadKeys).find((key) => uploadKeys[key].upload_key === uploadKey);
       if (matchingKey) {
         if (allowedExtensions.includes(extension)) {
-          const { domain, subdomain } = uploadKeys[matchingKey];
+          const { domain, subdomain, embedTitle, embedDescription, embedColor } = uploadKeys[matchingKey];
           fs.rename(files.file.path, `./src/uploads/raw/i/${hash}.${extension}`, (err) => {
             if (err) throw err;
   
@@ -37,6 +37,10 @@ router.post("/", (req, res) => {
               uploads[`${hash}.${extension}`] = {};
               uploads[`${hash}.${extension}`]["user"] = user;
               uploads[`${hash}.${extension}`]["url"] = `http://${mainDomain}/uploads/${hash}`;
+              uploads[`${hash}.${extension}`]["embed"] = {}
+              uploads[`${hash}.${extension}`]["embed"]["title"] = embedTitle
+              uploads[`${hash}.${extension}`]["embed"]["description"] = embedDescription
+              uploads[`${hash}.${extension}`]["embed"]["color"] = embedColor
   
               fs.writeFile("./src/data/uploads.json", JSON.stringify(uploads, null, 4),
                 (error2) => {

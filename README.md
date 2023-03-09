@@ -36,11 +36,11 @@ Here is a list of all the keys in the config with their meaning.
 - `webhook_url` : The URL for the webhook.
 
 ### Progress
-- [x] Page rendering cleanup
-- [x] Webhooks for uploads
+- [X] Page rendering cleanup
+- [X] Webhooks for uploads
 - [X] Endpoints cleanup
 - [ ] Complete user system with Dashboard
-- [ ] Embed Support
+- [X] Embed support
 
 ### How to make new endpoints
 To make a new endpoint you need to make a file in the `routes` folder with your name of choice. Example: `example.js`
@@ -54,11 +54,13 @@ router.get("/",(req,res)=>{
 module.exports=router;
 ```
 
-In your `server.js` you need to add two lines
-- Importing the endpoint:
-    `const exampleRoute = require("./routes/example")`
-- Making the endpoint reachable:
-    `app.use("/yourendpoint", exampleRoute)`
+Then you just need to add a new value to the `"routes.json"` array:
+```json
+{
+        "endpoint": "/yourendpoint",
+        "location": "./routes/yourfile"
+}
+```
 
 **Note!**
 In your endpoint JS file, leave the router endpoint on `"/"`, since you will be giving the name of the route in the main `server.js` file.

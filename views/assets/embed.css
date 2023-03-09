@@ -1,0 +1,63 @@
+#embedViewer {
+    border-radius: 4px!important;
+    background-color: #2f3136!important;
+}
+  
+#embedViewer_header {
+    border: none!important;
+    background-color: #2f3136!important;
+    padding-bottom: 0px!important;
+}
+
+#embedViewer_footer {
+    font-size: 0.75rem!important;
+    border: none!important;
+    background-color: #2f3136!important;
+}
+
+#embedViewer_author {
+    font-size: 0.75rem!important;
+    line-height: 1rem!important;
+    font-weight: 400!important;
+    grid-column: 1/1!important;
+}
+
+#embedViewer_body {
+    margin-top: 8px!important;
+}
+
+#embedViewer_title {
+    font-size: 1rem!important;
+    font-weight: 600!important;
+    display: inline-block!important;
+    grid-column: 1/1!important;
+    color: white!important;
+}
+
+#embedViewer_description {
+    font-size: 0.875rem!important;
+    line-height: 1.125rem!important;
+    font-weight: 400!important;
+    white-space: pre-line!important;
+    grid-column: 1/1!important;
+    color: #ebebeb!important;
+    margin-top: 8px!important;
+    resize: none!important;
+    overflow: hidden!important;
+}
+
+.embedViewer-input {
+    background-color: transparent!important;
+    border: none!important;
+    width: 100%!important;
+    padding: 0px!important;
+    border-radius: 0px!important;
+}
+
+.embedViewer-input:focus {
+    border: none!important;
+}
+
+.embedViewer-input {
+    color: white!important;
+}

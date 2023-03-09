@@ -18,7 +18,11 @@ function checkUploadkey(username, discordID) {
             "discord_id": discordID,
             "upload_key": code,
             "domain": mainDomain,
-            "subdomain": ""
+            "subdomain": "",
+            "embedAuthor": username,
+            "embedTitle": "",
+            "embedDescription": "",
+            "embedColor": "#3b00a8"
         };
         fs.writeFileSync('./src/data/keys.json', JSON.stringify(keys, null, 2), err => {
             if (err) throw err

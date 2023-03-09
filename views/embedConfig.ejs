@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>hypixel.lol</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../assets/style.css">
+      <link rel="stylesheet" href="../assets/embed.css">
+      <link rel="stylesheet" href="https://use.typekit.net/obf6rgz.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+   </head>
+   <body>
+      <div class="center">
+      <div class="row">
+      <div class="col-12">
+         <div class="card">
+            <div class="card-content">
+               <h1 class="card-title">Embed config</h1>
+               <form id="embedForm" method="POST">
+                  <div id="embedViewer-wrapper">
+                     <div class="card" id="embedViewer" style="width: 100%!important; height: 400px;">
+                        <div class="card-body pt-0" id="embedViewer_body">
+                           <input type="text" class="card-title embedViewer-input mb-0 mt-2" name="embedViewer_title" id="embedViewer_title" placeholder="Embed title..." value="<%=embedTitle%>">
+                           <textarea class="embedViewer-input mb-0" name="embedViewer_description" id="embedViewer_description" placeholder="Embed description..."><%=embedDescription%></textarea>
+                           <div style="text-align: left; margin-top: 16px;"><img class="img-fluid" id="embedViewer_image" src="https://raw.githubusercontent.com/matyii/hypixel.lol/main/icons/upload.png" style="height: 150px; border-radius: 10px;"></div>
+                        </div>
+                        <div class="card-footer" id="embedViewer_footer" style="text-align: left;">
+                           <p class="m-0">Placeholders: {filesize}, {username}, {filename}, {randomemoji}</p>
+                        </div>
+                     </div>
+                     <div class="input-group mt-2">
+                        <input type="text" class="form-control" id="embedColour-text" name="embedColour" style="color: #9b9b9b!important;" readonly>
+                        <div class="input-group-append">
+                           <span class="input-group-text" id="embedColour-wrapper">
+                           <input type="color" id="embedColour" value="<%=embedColour%>" style="opacity: 0%;">
+                           </span>
+                        </div>
+                     </div>
+                     <br>
+                     <button type="submit" class="button" id="domainSubmit">Save</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+        $('#domainSubmit').click(function(event) {
+            event.preventDefault();
+            var formData = {
+            'embed-title': $('#embedViewer_title').val(),
+            'embed-description': $('#embedViewer_description').val(),
+            'embed-color': $('#embedColour').val()
+            };
+
+            $.ajax({
+            type: 'POST',
+            url: '',
+            data: formData,
+            dataType: 'json',
+            encode: true
+            })
+            .done(
+                window.location.href = "/dashboard"
+            )
+        });
+        });
+
+         function updateEmbedColour() {
+             var colourPicker = document.getElementById("embedColour");
+             var colourValue = document.getElementById("embedColour-text");
+             var colourWrapper = document.getElementById("embedColour-wrapper");
+         
+             colourValue.value = colourPicker.value;
+             $('#embedViewer').css('border-left', "4px solid " + colourPicker.value);
+             $('#embedColour-wrapper').css('background', colourValue.value);
+             setTimeout(updateEmbedColour, 1);
+             }
+         updateEmbedColour();
+      </script>        
+   </body>
+</html>

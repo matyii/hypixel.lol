@@ -13,6 +13,9 @@ router.get("/:file",(req,res)=>{
             var extension = item.split(".")[1]
             var uploads = JSON.parse(fs.readFileSync("./src/data/uploads.json"))
             var user = uploads[item]["user"]
+            var embedTitle = uploads[item]["embed"]["title"].replace("{filename}", file).replace("{filesize}", fileSize).replace("{username}", user)
+            var embedDescription = uploads[item]["embed"]["description"].replace("{filename}", file).replace("{filesize}", fileSize).replace("{username}", user)
+            var embedColour = uploads[item]["embed"]["color"]
 
             if (extension == "webm" || extension == "mp4" || extension == "mov") {
                 res.render('video', 
@@ -22,7 +25,10 @@ router.get("/:file",(req,res)=>{
                     fileSize:fileSize,
                     fileUrl:fileUrl,
                     filePath:filePath,
-                    user:user
+                    user:user,
+                    embedTitle: embedTitle,
+                    embedDescription: embedDescription,
+                    embedColor: embedColour
                 })
             } else {
                 res.render('photo',
@@ -32,7 +38,10 @@ router.get("/:file",(req,res)=>{
                     fileSize:fileSize,
                     fileUrl:fileUrl,
                     filePath:filePath,
-                    user:user
+                    user:user,
+                    embedTitle: embedTitle,
+                    embedDescription: embedDescription,
+                    embedColor: embedColour
                 })                        
             }
         }

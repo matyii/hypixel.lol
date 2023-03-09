@@ -9,7 +9,7 @@ const isAuthenticated = (req, res, next) => {
       return next();
     }
     res.redirect("/login");
-  };
+};
 
 router.get('/',isAuthenticated, function(req, res) {
     const accessToken = req.user.accessToken;
@@ -18,6 +18,7 @@ router.get('/',isAuthenticated, function(req, res) {
     const id = profile["id"]
     const username = profile["username"]
     const usertag = profile["discriminator"]
+    const bannerColor = profile["banner_color"]
     const profilepic = `https://cdn.discordapp.com/avatars/${id}/${profile["avatar"]}.png?size=1024`
     const uploadKey = checkUploadkey(username, id)
     let uploadsNumber;
@@ -29,6 +30,7 @@ router.get('/',isAuthenticated, function(req, res) {
             id: id,
             username: username,
             usertag: usertag,
+            bannerColor: bannerColor,
             profilepic: profilepic,
             uploadkey: uploadKey[0],
             uid: uploadKey[1],
