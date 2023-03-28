@@ -24,8 +24,8 @@ router.get('/', isAuthenticated, async (req, res) => {
   
     Object.keys(data).forEach((key) => {
         if (data[key].discord_id === id) {
-            domain = data[key].domain;
-            subdomain = data[key].subdomain;
+            domain = data[key]['domains'].domain;
+            subdomain = data[key]['domains'].subdomain;
         }
       });
       
@@ -34,7 +34,7 @@ router.get('/', isAuthenticated, async (req, res) => {
   res.render('domainConfig', { domain: domain, subdomain: subdomain, domains: domainsData, selectedDomain: selectedDomain });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', isAuthenticated,async (req, res) => {
     try {
       const { subdomain, domain } = req.body;
 
@@ -47,8 +47,8 @@ router.post('/', async (req, res) => {
       
       Object.keys(data).forEach((key) => {
         if (data[key].discord_id === userId) {
-          data[key].domain = domain;
-          data[key].subdomain = subdomain;
+          data[key]['domains'].domain = domain;
+          data[key]['domains'].subdomain = subdomain;
         }
       });
 

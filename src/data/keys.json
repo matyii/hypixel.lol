@@ -1,12 +1,16 @@
 {
   "1": {
     "discord_id": "384707717077663744",
-    "upload_key": "matyii_UyXr90Q1CF81",
-    "domain": "localhost",
-    "subdomain": "",
-    "embedAuthor": "matyii",
-    "embedTitle": "hello",
-    "embedDescription": "no",
-    "embedColor": "#28016f"
+    "upload_key": "matyii_RAvJ1ks7JDcr",
+    "domains": {
+      "domain": "localhost",
+      "subdomain": "matyii"
+    },
+    "embed": {
+      "embedAuthor": "matyii",
+      "embedTitle": "lajos",
+      "embedDescription": "",
+      "embedColor": "#3b00a8"
+    }
   }
 }

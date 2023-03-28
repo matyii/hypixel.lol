@@ -20,9 +20,9 @@ router.get('/', isAuthenticated, (req, res) => {
 
   Object.keys(data).forEach((key) => {
     if (data[key].discord_id === id) {
-      embedTitle = data[key]['embedTitle'] || '';
-      embedDescription = data[key]['embedDescription'] || '';
-      embedColour = data[key]['embedColor'] || '';
+      embedTitle = data[key]['embed']['embedTitle'] || '';
+      embedDescription = data[key]['embed']['embedDescription'] || '';
+      embedColour = data[key]['embed']['embedColor'] || '';
     }
   });
 
@@ -43,9 +43,9 @@ router.post('/', async (req, res) => {
 
     Object.keys(data).forEach((key) => {
       if (data[key].discord_id === userId) {
-        data[key]['embedTitle'] = title;
-        data[key]['embedDescription'] = description;
-        data[key]['embedColor'] = color;
+        data[key]['embed']['embedTitle'] = title;
+        data[key]['embed']['embedDescription'] = description;
+        data[key]['embed']['embedColor'] = color;
       }
     });
 
