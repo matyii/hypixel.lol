@@ -164,11 +164,6 @@ h1, h2, h3, h4, h5 {
     }
 }
 
-#subdomain {
-    width: 100px;
-    height: 1.1em;
-}
-
 .selectDomain {
     display: flex;
     justify-content: space-evenly;
@@ -201,4 +196,29 @@ h1, h2, h3, h4, h5 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
+}
+
+#subdomain {
+    background: #131313;
+    border: none;
+    border-radius: 5px;
+    padding: 2px;
+    margin-left: 2px;
+    color: white;
+    font-family: proxima-soft, sans-serif!important;
+    vertical-align: middle;
+    width: 100px;
+}
+
+#domain {
+    background: #131313;
+    border: none;
+    color: white;
+    height: 25px;
+}
+
+#embedColour-text {
+    color: #9b9b9b;
+    background-color: #131313;
+    height: 45px;
 }

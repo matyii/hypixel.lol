@@ -12,10 +12,10 @@
             <div class="card-content">
                <h1>Configure your domains</h1>
                <h2>Current: <%=subdomain%>.<%=domain%></h2>
-               <form action="" method="post">
+               <form action="" method="post" id="domainform">
                   <div class="selectDomain">
                     <label for="subdomain">Subdomain:</label>
-                    <textarea style="resize:none" id="subdomain" name="subdomain"><%=subdomain%></textarea>
+                    <input type="text" style="resize:none" id="subdomain" name="subdomain" value="<%=subdomain%>">
                     <br>
                     <label for="domain">Domain:</label>
                     <select id="domain" name="domain">
