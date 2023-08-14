@@ -1,46 +1,62 @@
 [
     {
         "endpoint":"/",
-        "location":"./routes/home"
+        "location":"../routes/home"
     },
     {
         "endpoint":"/domains",
-        "location":"./routes/domains"
+        "location":"../routes/domains"
     },
     {
         "endpoint":"/uploads/raw/i",
-        "location":"./routes/rawfile"
+        "location":"../routes/rawfile"
     },
     {
         "endpoint":"/uploads",
-        "location":"./routes/preview"
+        "location":"../routes/preview"
     },
     {
         "endpoint":"/api",
-        "location":"./routes/api/api"
+        "location":"../routes/api/api"
     },
     {
         "endpoint":"/api/domains",
-        "location":"./routes/api/apiDomains"
+        "location":"../routes/api/apiDomains"
     },
     {
         "endpoint":"/api/uploads",
-        "location":"./routes/api/apiUploads"
+        "location":"../routes/api/apiUploads"
     },
     {
         "endpoint":"/api/upload",
-        "location":"./routes/api/apiUpload"
+        "location":"../routes/api/apiUpload"
     },
     {
         "endpoint": "/dashboard",
-        "location": "./routes/user/dashboard"
+        "location": "../routes/user/dashboard"
     },
     {
         "endpoint": "/dashboard/domain",
-        "location": "./routes/user/domainDash"
+        "location": "../routes/user/domainDash"
     },
     {
         "endpoint": "/dashboard/embed",
-        "location": "./routes/user/embedDash"
+        "location": "../routes/user/embedDash"
+    },
+    {
+        "endpoint": "/setup",
+        "location": "../routes/setup/setup"
+    },
+    {
+        "endpoint": "/setup/start",
+        "location": "../routes/setup/startProcess"
+    },
+    {
+        "endpoint": "/setup/submit",
+        "location": "../routes/setup/submit"
+    },
+    {
+        "endpoint": "/setup/success",
+        "location": "../routes/setup/success"
     }
  ]

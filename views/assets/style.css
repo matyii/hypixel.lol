@@ -222,3 +222,56 @@ h1, h2, h3, h4, h5 {
     background-color: #131313;
     height: 45px;
 }
+
+#configForm {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+#configForm label {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 5px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="url"],
+.form-group input[type="checkbox"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#configForm input[type="submit"] {
+    background-color: #8600c4;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+#configForm input[type="submit"]:hover {
+    background-color: #7303a7;
+}
