@@ -1,82 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <title>hypixel.lol</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="../assets/style.css">
-      <link rel="stylesheet" href="../assets/embed.css">
-      <link rel="stylesheet" href="https://use.typekit.net/obf6rgz.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-   </head>
-   <body>
-      <div class="center">
-      <div class="row">
-      <div class="col-12">
-         <div class="card">
-            <div class="card-content">
-               <h1 class="card-title">Embed config</h1>
-               <form id="embedForm" method="POST">
-                  <div id="embedViewer-wrapper">
-                     <div class="card" id="embedViewer" style="width: 100%!important; height: 400px;">
-                        <div class="card-body pt-0" id="embedViewer_body">
-                           <input type="text" class="card-title embedViewer-input mb-0 mt-2" name="embedViewer_title" id="embedViewer_title" placeholder="Embed title..." value="<%=embedTitle%>">
-                           <textarea class="embedViewer-input mb-0" name="embedViewer_description" id="embedViewer_description" placeholder="Embed description..."><%=embedDescription%></textarea>
-                           <div style="text-align: left; margin-top: 16px;"><img class="img-fluid" id="embedViewer_image" src="https://raw.githubusercontent.com/matyii/hypixel.lol/main/icons/upload.png" style="height: 150px; border-radius: 10px;"></div>
-                        </div>
-                        <div class="card-footer" id="embedViewer_footer" style="text-align: left;">
-                           <p class="m-0">Placeholders: {filesize}, {username}, {filename}, {randomemoji}</p>
-                        </div>
-                     </div>
-                     <div class="input-group mt-2">
-                        <input type="text" class="form-control" id="embedColour-text" name="embedColour" readonly>
-                        <div class="input-group-append">
-                           <span class="input-group-text" id="embedColour-wrapper">
-                           <input type="color" id="embedColour" value="<%=embedColour%>" style="opacity: 0%;">
-                           </span>
-                        </div>
-                     </div>
-                     <br>
-                     <button type="submit" class="button" id="domainSubmit">Save</button>
-                  </div>
-               </form>
-            </div>
-         </div>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <title>hypixel.lol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/embed.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+   <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+          <a class="navbar-brand px-3" href="#">hypixel.lol</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                   <a class="nav-link" href="/dashboard"><i class="bi bi-person-fill"></i> Profile</a>
+               </li>
+               <li class="nav-item">
+                   <div class="dropdown">
+                     <a class="nav-link active dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" href="#"><i class="bi bi-gear-fill"></i> Configure</a>
+                     <ul class="dropdown-menu">
+                       <li><a class="dropdown-item" href="/dashboard/domain">Configure domains</a></li>
+                       <li><a class="dropdown-item" href="/dashboard/embed">Configure embeds</a></li>
+                       <li><a class="dropdown-item" onclick="downloadConfig()" href="#">Download your config</a></li>
+                       <textarea id="config-result" style="display: none;" readonly></textarea>
+                     </ul> 
+                   </div> 
+               </li>
+               <li class="nav-item">
+                 <a type="button" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Soon!"><i class="bi bi-image-fill"></i> Gallery</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" onclick="logout()" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
+               </li>
+              </ul>
+          </div>
       </div>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script type="text/javascript">
-        $(document).ready(function() {
-        $('#domainSubmit').click(function(event) {
-            event.preventDefault();
-            var formData = {
-            'embed-title': $('#embedViewer_title').val(),
-            'embed-description': $('#embedViewer_description').val(),
-            'embed-color': $('#embedColour').val()
-            };
+  </nav>
 
-            $.ajax({
-            type: 'POST',
-            url: '',
-            data: formData,
-            dataType: 'json',
-            encode: true
-            })
-            .done(
-                window.location.href = "/dashboard"
-            )
-        });
+  <div class="container">
+   <div class="row justify-content-center mt-5">
+       <div class="col-12 col-md-8">
+           <div class="card">
+               <div class="card-body">
+                   <h1 class="card-title text-center">Embed config</h1>
+                   <form id="embedForm" method="POST">
+                       <div id="embedViewer-wrapper">
+                           <div class="card mb-3">
+                               <div class="card-body">
+                                   <div class="mb-3">
+                                       <input type="text" class="card-title embedViewer-input form-control"
+                                           name="embedViewer_title" id="embedViewer_title"
+                                           placeholder="Embed title..." value="<%=embedTitle%>">
+                                   </div>
+                                   <textarea class="embedViewer-input form-control mb-2"
+                                       name="embedViewer_description" id="embedViewer_description"
+                                       placeholder="Embed description..."><%=embedDescription%></textarea>
+                                   <div class="text-center">
+                                       <img class="img-fluid" id="embedViewer_image"
+                                           src="https://raw.githubusercontent.com/matyii/hypixel.lol/main/icons/upload.png"
+                                           style="height: 150px; border-radius: 10px;">
+                                   </div>
+                               </div>
+                               <div class="card-footer">
+                                   <p class="m-0">Placeholders: {filesize}, {username}, {filename},
+                                       {randomemoji}</p>
+                               </div>
+                           </div>
+                           <div class="input-group mt-2">
+                               <input type="text" class="form-control" id="embedColour-text" name="embedColour"
+                                   readonly>
+                               <div class="input-group-append">
+                                   <span class="input-group-text" id="embedColour-wrapper">
+                                       <input type="color" id="embedColour" value="<%=embedColour%>"
+                                           style="opacity: 0%;">
+                                   </span>
+                               </div>
+                           </div>
+                           <br>
+                           <button type="submit" class="btn btn-primary">Save</button>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#embedForm').submit(function (event) {
+                event.preventDefault();
+                var formData = {
+                    'embed-title': $('#embedViewer_title').val(),
+                    'embed-description': $('#embedViewer_description').val(),
+                    'embed-color': $('#embedColour').val()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '',
+                    data: formData,
+                    dataType: 'json',
+                    encode: true
+                })
+                    .done(
+                        window.location.href = "/dashboard"
+                    )
+            });
         });
 
-         function updateEmbedColour() {
-             var colourPicker = document.getElementById("embedColour");
-             var colourValue = document.getElementById("embedColour-text");
-             var colourWrapper = document.getElementById("embedColour-wrapper");
-         
-             colourValue.value = colourPicker.value;
-             $('#embedViewer').css('border-left', "4px solid " + colourPicker.value);
-             $('#embedColour-wrapper').css('background', colourValue.value);
-             setTimeout(updateEmbedColour, 1);
-             }
-         updateEmbedColour();
-      </script>        
-   </body>
+        function updateEmbedColour() {
+            var colourPicker = document.getElementById("embedColour");
+            var colourValue = document.getElementById("embedColour-text");
+            var colourWrapper = document.getElementById("embedColour-wrapper");
+
+            colourValue.value = colourPicker.value;
+            $('#embedViewer').css('border-left', "4px solid " + colourPicker.value);
+            $('#embedColour-wrapper').css('background', colourValue.value);
+            setTimeout(updateEmbedColour, 1);
+        }
+        updateEmbedColour();
+    </script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+       return new bootstrap.Tooltip(tooltipTriggerEl);
+   });
+</script>
 </html>

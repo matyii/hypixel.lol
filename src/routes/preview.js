@@ -8,7 +8,7 @@ router.get("/:file",(req,res)=>{
     fs.readdirSync('./src/uploads/raw/i/').forEach( function (item, index) {
         if (file == item.replace("." + item.split(".")[1], "")) {
             var filePath = './src/uploads/raw/i/' + item
-            var fileUrl = "http://"+mainDomain+"/uploads/raw/i/" + item
+            var fileUrl = "/uploads/raw/i/" + item
             var fileSize = filesizejs(fs.statSync(filePath).size, {base: 10})
             var extension = item.split(".")[1]
             var uploads = JSON.parse(fs.readFileSync("./src/data/uploads.json"))

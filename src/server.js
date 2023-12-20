@@ -15,8 +15,6 @@ app.use(express.json());
 loadFunctions.checkFolder(folders);
 loadFunctions.discord(app);
 loadFunctions.loadRoutes(app,routes);
-loadFunctions.checkForUpdates();
-loadFunctions.checkSetup();
 
 app.listen(loadFunctions.config("nodeserverport"), () => {
   console.log(`${green("[SUCCESS]")} Server successfully started on port ${loadFunctions.config("nodeserverport")}!`);

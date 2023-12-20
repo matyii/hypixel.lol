@@ -18,7 +18,9 @@ router.post("/", (req, res) => {
     form.parse(req, (err, fields, files) => {
       const uploadKeys = JSON.parse(fs.readFileSync("./src/data/keys.json"));
       const uploadKey = fields["upload-key"];
-      const user = uploadKey.substring(0, uploadKey.length - (uploadKeyLength + 1))
+      console.log(uploadKeys, uploadKey)
+      // const user = uploadKey.substring(0, uploadKey.length - (uploadKeyLength + 1))
+      const user = uploadKey.split('_')[0]
       const hash = randomstring.generate(8);
       const extension = path.extname(files.file.name).replace(".", "");
       const url = `${mainDomain}/uploads/${hash}`;
@@ -26,7 +28,9 @@ router.post("/", (req, res) => {
       const matchingKey = Object.keys(uploadKeys).find((key) => uploadKeys[key].upload_key === uploadKey);
       if (matchingKey) {
         if (allowedExtensions.includes(extension)) {
-          const { domain, subdomain, embedTitle, embedDescription, embedColor } = uploadKeys[matchingKey];
+          const { domains, embed } = uploadKeys[matchingKey];
+          const { domain, subdomain } = domains;
+          const { embedTitle, embedDescription, embedColor } = embed;
           fs.rename(files.file.path, `./src/uploads/raw/i/${hash}.${extension}`, (err) => {
             if (err) throw err;
   
@@ -38,9 +42,9 @@ router.post("/", (req, res) => {
               uploads[`${hash}.${extension}`]["user"] = user;
               uploads[`${hash}.${extension}`]["url"] = `http://${mainDomain}/uploads/${hash}`;
               uploads[`${hash}.${extension}`]["embed"] = {}
-              uploads[`${hash}.${extension}`]["embed"]["title"] = embedTitle
-              uploads[`${hash}.${extension}`]["embed"]["description"] = embedDescription
-              uploads[`${hash}.${extension}`]["embed"]["color"] = embedColor
+              uploads[`${hash}.${extension}`]["embed"]["title"] = embedTitle;
+              uploads[`${hash}.${extension}`]["embed"]["description"] = embedDescription;
+              uploads[`${hash}.${extension}`]["embed"]["color"] = embedColor;
   
               fs.writeFile("./src/data/uploads.json", JSON.stringify(uploads, null, 4),
                 (error2) => {

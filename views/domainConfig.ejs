@@ -1,36 +1,81 @@
-<!DOCTYPE html> 
-<html lang="en">
-   <head>
-      <title>hypixel.lol — Domain configuration</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="../assets/style.css">
-      <link rel="stylesheet" href="https://use.typekit.net/obf6rgz.css">
-   </head>
-   <body>
-      <div class="center">
-         <div class="card" style="width: 400px!important;">
-            <div class="card-content">
-               <h1>Configure your domains</h1>
-               <h2>Current: <%=subdomain%>.<%=domain%></h2>
-               <form action="" method="post" id="domainform">
-                  <div class="selectDomain">
-                    <label for="subdomain">Subdomain:</label>
-                    <input type="text" style="resize:none" id="subdomain" name="subdomain" value="<%=subdomain%>">
-                    <br>
-                    <label for="domain">Domain:</label>
-                    <select id="domain" name="domain">
-                        <% for (let domain of domains) { %>
-                        <option value="<%= domain %>" <%= domain === selectedDomain ? 'selected' : '' %>>
-                            <%= domain %>
-                        </option>
-                        <% } %>
-                    </select>
-                  </div>
-                  <br>
-                  <button type="submit" class="button" id="domainSubmit">Save</button>
-               </form>
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <title>hypixel.lol — Domain configuration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand px-3" href="#">hypixel.lol</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                     <a class="nav-link" href="/dashboard"><i class="bi bi-person-fill"></i> Profile</a>
+                 </li>
+                 <li class="nav-item">
+                     <div class="dropdown">
+                       <a class="nav-link active dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" href="#"><i class="bi bi-gear-fill"></i> Configure</a>
+                       <ul class="dropdown-menu">
+                         <li><a class="dropdown-item" href="/dashboard/domain">Configure domains</a></li>
+                         <li><a class="dropdown-item" href="/dashboard/embed">Configure embeds</a></li>
+                         <li><a class="dropdown-item" onclick="downloadConfig()" href="#">Download your config</a></li>
+                         <textarea id="config-result" style="display: none;" readonly></textarea>
+                       </ul> 
+                     </div> 
+                 </li>
+                 <li class="nav-item">
+                   <a type="button" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Soon!"><i class="bi bi-image-fill"></i> Gallery</a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" onclick="logout()" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                 </li>
+                </ul>
             </div>
-         </div>
-      </div>
-   </body>
+        </div>
+    </nav>
+
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card" style="width: 400px;">
+            <div class="card-body">
+                <h1 class="text-center">Configure your domains</h1>
+                <h2 class="text-center">Current: <%=subdomain%>.<%=domain%></h2>
+                <form action="" method="post" id="domainform">
+                  <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="subdomain" name="subdomain" value="<%=subdomain%>">
+                      <label for="subdomain">Subdomain:</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                      <select class="form-select" id="domain" name="domain">
+                          <% for (let domain of domains) { %>
+                          <option value="<%= domain %>" <%= domain === selectedDomain ? 'selected' : '' %>><%= domain %></option>
+                          <% } %>
+                      </select>
+                      <label for="domain">Domain:</label>
+                  </div>
+                  <div class="d-grid gap-2 mt-3">
+                      <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+              </form>
+              
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+  </script>
+</body>
+
 </html>

@@ -4,6 +4,5 @@
     "nodeserverport": "80",
     "upload_notify": true,
     "webhook_notify": false,
-    "webhook_url": "",
-    "setup_done": true
+    "webhook_url": ""
 }

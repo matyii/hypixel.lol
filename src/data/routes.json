@@ -4,20 +4,12 @@
         "location":"../routes/home"
     },
     {
-        "endpoint":"/domains",
-        "location":"../routes/domains"
-    },
-    {
         "endpoint":"/uploads/raw/i",
         "location":"../routes/rawfile"
     },
     {
         "endpoint":"/uploads",
         "location":"../routes/preview"
-    },
-    {
-        "endpoint":"/api",
-        "location":"../routes/api/api"
     },
     {
         "endpoint":"/api/domains",
@@ -42,21 +34,5 @@
     {
         "endpoint": "/dashboard/embed",
         "location": "../routes/user/embedDash"
-    },
-    {
-        "endpoint": "/setup",
-        "location": "../routes/setup/setup"
-    },
-    {
-        "endpoint": "/setup/start",
-        "location": "../routes/setup/startProcess"
-    },
-    {
-        "endpoint": "/setup/submit",
-        "location": "../routes/setup/submit"
-    },
-    {
-        "endpoint": "/setup/success",
-        "location": "../routes/setup/success"
     }
  ]

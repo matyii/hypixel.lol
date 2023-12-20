@@ -1,41 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
     <head>
         <title>User profile - hypixel.lol</title>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="assets/style.css">
-        <link rel="stylesheet" href="https://use.typekit.net/obf6rgz.css">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     </head>
     <body>
-        <div class="center">
-            <div class="card user-card">
-                <div class="user-card-content">
-                  <h1 class="user-card-title">Welcome back!</h1>
-                  <div class="user-profile-section">
-                    <a target="_blank" href="<%=profilepic%>"><img id="user-profilepic" src="<%=profilepic%>" alt="Profile picture"></a>
-                    <div class="user-info">
-                        <p><strong>UID: </strong><%=uid%></p>
-                        <p><strong>Username: </strong><%=username%></p>
-                        <p><strong>Key: </strong><span id="upload-key"><%=uploadkey%></span></p>
-                        <p><strong>Uploads: </strong><a target="_blank" href="http://<%=maindomain%>/api/uploads/<%=uploadkey%>"><%=uploads%></a></p>
+
+      <ul class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand px-3" href="#">hypixel.lol</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/dashboard"><i class="bi bi-person-fill"></i> Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                          <a class="nav-link active dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" href="#"><i class="bi bi-gear-fill"></i> Configure</a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/dashboard/domain">Configure domains</a></li>
+                            <li><a class="dropdown-item" href="/dashboard/embed">Configure embeds</a></li>
+                            <li><a class="dropdown-item" onclick="downloadConfig()" href="#">Download your config</a></li>
+                            <textarea id="config-result" style="display: none;" readonly></textarea>
+                          </ul> 
+                        </div> 
+                    </li>
+                    <li class="nav-item">
+                      <a type="button" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Soon!"><i class="bi bi-image-fill"></i> Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="logout()" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </ul>
+
+      <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card user-card">
+            <div class="card-body">
+                <h1 class="card-title text-center">Welcome back!</h1>
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <a target="_blank" href="<%=profilepic%>">
+                            <img id="user-profilepic" src="<%=profilepic%>" width="150px" class="img-fluid rounded-circle">
+                        </a>
                     </div>
-                  </div>
-                </div>
-                <div class="card-footer user-card-footer">
-                  <a onclick="downloadConfig()" class="button button-block" style="cursor: pointer; user-select: none;">Download your config</a>
-                  <br>
-                  <a href="http://<%=maindomain%>/dashboard/domain" class="button button-block">Configure your domains</a>
-                  <br>
-                  <a href="http://<%=maindomain%>/dashboard/embed" class="button button-block">Configure your embed</a>
-                  <br>
-                  <a onclick="logout()" class="button button-block" style="cursor: pointer; user-select: none;">Log out</a>
-                  <textarea id="config-result" placeholder="generated config here..." style="display: none; background-color: #171717; color: #9b9b9b; border: none; overflow-y: hidden; width: 100%; height: 100%; font-size: 80.7%; resize: none;" readonly></textarea>
+                    <div class="col-md-8">
+                        <div class="user-info">
+                            <p><strong>UID: </strong><%=uid%></p>
+                            <p><strong>Username: </strong><%=username%></p>
+                            <p><strong>Key: </strong><span id="upload-key"><%=uploadkey%></span></p>
+                            <p>
+                                <strong>Uploads: </strong>
+                                <a target="_blank" href="http://<%=maindomain%>/api/uploads/<%=uploadkey%>"><%=uploads%></a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
               </div>
-        </div>
+            </div>
+      </div>
+    </div>
+    
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+          var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+          var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+              return new bootstrap.Tooltip(tooltipTriggerEl);
+          });
+      </script>
+      
         <script>
           $(document).ready(function(){
             $("#user-profilepic").hover(function(){
