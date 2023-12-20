@@ -26,8 +26,6 @@ router.get('/', isAuthenticated, (req, res) => {
     }
   });
 
-  console.log(embedTitle, embedDescription,embedColour)
-
   res.render('embedConfig', {
         embedTitle: embedTitle,
         embedDescription: embedDescription,
