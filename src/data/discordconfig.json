@@ -1,5 +1,0 @@
-{
-    "clientID": "a",
-    "clientSecret": "a",
-    "callbackURL": "http://localhost/login/callback"
-}

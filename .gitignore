@@ -2,4 +2,4 @@ node_modules/
 src/uploads/raw/i/*
 src/uploads/raw/json/*
 src/data/uploads.json
-src/data/discordconfig.json
+.env

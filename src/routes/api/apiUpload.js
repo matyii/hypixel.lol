@@ -1,7 +1,6 @@
 const fs = require('fs')
 const formidable = require('formidable')
 const mainDomain = require("../../functions/config")('maindomain')
-const uploadKeyLength = require("../../functions/config")('uploadkeylength')
 const upload_notify = require("../../functions/config")('upload_notify')
 const webhook_notify = require("../../functions/config")('webhook_notify')
 const webhookURL = require("../../functions/config")('webhook_url')
@@ -39,6 +38,7 @@ router.post("/", (req, res) => {
               uploads[`${hash}.${extension}`] = {};
               uploads[`${hash}.${extension}`]["user"] = user;
               uploads[`${hash}.${extension}`]["url"] = `http://${mainDomain}/uploads/${hash}`;
+              uploads[`${hash}.${extension}`]["rawUrl"] = `http://${mainDomain}/uploads/raw/i/${hash}.${extension}`;
               uploads[`${hash}.${extension}`]["embed"] = {}
               uploads[`${hash}.${extension}`]["embed"]["title"] = embedTitle;
               uploads[`${hash}.${extension}`]["embed"]["description"] = embedDescription;

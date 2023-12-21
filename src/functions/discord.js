@@ -1,7 +1,7 @@
 const passport = require("passport");
 const DiscordStrategy = require("passport-discord").Strategy;
 const session = require("express-session");
-const config = require("../data/discordconfig.json");
+require('dotenv').config();
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -14,9 +14,9 @@ passport.deserializeUser((user, done) => {
 passport.use(
   new DiscordStrategy(
     {
-      clientID: config.clientID,
-      clientSecret: config.clientSecret,
-      callbackURL: config.callbackURL,
+      clientID: process.env.DC_ID,
+      clientSecret: process.env.DC_SECRET,
+      callbackURL: process.env.DC_URL,
       scope: ["identify", "email"],
     },
     (accessToken, refreshToken, profile, done) => {

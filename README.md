@@ -4,9 +4,6 @@
 ![image](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![image](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
 
-# Support
-For support, join our [Discord Server](https://discord.gg/9YWvZNAmb9)
-
 ### Features
 - Easy configuration [(Image)](/preview/config.png)
 - Automatic config generation for each user [(Image)](/preview/key.png)
@@ -39,7 +36,7 @@ Here is a list of all the keys in the config with their meaning.
 - [X] Page rendering cleanup
 - [X] Webhooks for uploads
 - [X] Endpoints cleanup
-- [ ] Complete user system with Dashboard
+- [X] Complete user system with Dashboard
 - [X] Embed support
 
 ### How to make new endpoints
@@ -68,11 +65,12 @@ In your endpoint JS file, leave the router endpoint on `"/"`, since you will be 
 ### How to setup Discord Login
 - Make an application on the [Discord Developer Page](https://discord.com/developers/applications)
 - Go to the `OAuth2` Tab
-- Copy the `Client ID` and the `Client Secret`, and paste them to the `discordconfig.json` file in the `data` folder.
+- Copy the `Client ID` and the `Client Secret`, and paste them to the `.env.sample` file in the root folder.
+- NOTE!! Rename `.env.sample` to `.env` for it to work.
 - Make a redirect URL, that matches the route with the one, in the config
 
-```json
-"callbackURL": "http://localhost/login/callback"
+```
+DC_URL="http://localhost/login/callback"
 ```
 
 
@@ -80,7 +78,6 @@ In your endpoint JS file, leave the router endpoint on `"/"`, since you will be 
 To add new folders to the checker, you simply add a new list element containing the path of the folder in the `folders` variable in the `server.js` file. The checker (`/functions/check.js`) will run through all the list items, and checking them, if they exist, if they don't exist, it will make the specified folder.
 
 ### API
-- **GET** `/api` : API Documentation
 - **GET** `/api/uploads/:uploadkey` : Returns a list of uploads uploaded with the upload key.
 - **GET** `/api/domains` : Returns a list of all the domains.
 - **POST** `/api/upload`: This is the upload URL, and you can use other apps to upload files. In the post body you only need the `upload-key` and the `file`.

@@ -1,4 +1,4 @@
 body {
-    background: url("images/bg.svg") no-repeat center center;
+    background: url("images/bg.svg") no-repeat center center fixed;
     background-size: cover;
 }
