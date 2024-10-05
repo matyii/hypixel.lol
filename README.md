@@ -5,7 +5,7 @@
 ![image](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
 
 > [!CAUTION]
-> hypixel.lol has officially been closed. However, an exciting completely reworked version of the project is in the works!
+> hypixel.lol **has officially been closed**. However, an exciting completely reworked version of the project is in the works!
 
 ### Features
 - Easy configuration [(Image)](/preview/config.png)
