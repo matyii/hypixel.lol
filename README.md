@@ -4,6 +4,9 @@
 ![image](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![image](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
 
+> [!CAUTION]
+> hypixel.lol has officially been closed. However, an exciting completely reworked version of the project is in the works!
+
 ### Features
 - Easy configuration [(Image)](/preview/config.png)
 - Automatic config generation for each user [(Image)](/preview/key.png)
